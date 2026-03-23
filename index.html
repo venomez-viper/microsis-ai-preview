@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MicroSIS.ai — Enterprise AI Solutions</title>
+  <meta name="description" content="MicroSIS LLC delivers enterprise-grade AI solutions: document intelligence, voice AI, compliance automation, predictive analytics, and cybersecurity.">
+  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- ============ Navigation ============ -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">Micro<span>SIS</span>.ai</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li class="nav-cta mobile">
+          <a href="#demo" class="btn btn-primary btn-sm">Book a Demo</a>
+        </li>
+      </ul>
+      <div class="nav-cta">
+        <a href="#demo" class="btn btn-primary btn-sm">Book a Demo</a>
+      </div>
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ============ Toast Container ============ -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- ============ Main Content ============ -->
+  <main id="mainContent">
+
+    <!-- ======== HOME / HERO ======== -->
+    <section class="hero" id="home">
+      <div class="hero-bg"></div>
+      <div class="hero-content">
+        <div class="hero-badge fade-up">⚡ Now in Public Beta</div>
+        <h1 class="headline-xl fade-up fade-up-delay-1">AI that works<br>as hard as you do.</h1>
+        <p class="body-lg fade-up fade-up-delay-2">Five powerful AI products built for real businesses. From document processing to cybersecurity — MicroSIS handles the complexity so you can focus on growth.</p>
+        <div class="btn-group fade-up fade-up-delay-3" style="justify-content:center">
+          <a href="#products" class="btn btn-primary btn-lg">Explore Products</a>
+          <a href="#demo" class="btn btn-secondary btn-lg">Book a Demo</a>
+        </div>
+        <div class="hero-stats fade-up fade-up-delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number">5</div>
+            <div class="hero-stat-label">AI Products</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">99.9%</div>
+            <div class="hero-stat-label">Uptime SLA</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">50+</div>
+            <div class="hero-stat-label">Integrations</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number">SOC 2</div>
+            <div class="hero-stat-label">Certified</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PRODUCTS OVERVIEW ======== -->
+    <section class="section section-gray" id="products">
+      <div class="container">
+        <div class="text-center mb-64">
+          <span class="label fade-up">Our Products</span>
+          <h2 class="headline-lg mb-16 fade-up fade-up-delay-1">Five products. One platform.<br>Infinite possibilities.</h2>
+          <p class="body-lg fade-up fade-up-delay-2" style="max-width:640px;margin:0 auto">Each product is purpose-built for its domain, powered by the latest AI research, and ready to deploy in minutes.</p>
+        </div>
+        <div class="products-grid" id="productsGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== PRODUCT DETAIL SECTIONS ======== -->
+    <div id="productDetails">
+      <!-- Dynamically generated product detail pages -->
+    </div>
+
+    <!-- ======== ABOUT ======== -->
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-grid">
+          <div>
+            <span class="label fade-up">About MicroSIS</span>
+            <h2 class="headline-lg mb-24 fade-up fade-up-delay-1">Built by engineers<br>who've been there.</h2>
+            <p class="body-lg mb-32 fade-up fade-up-delay-2">MicroSIS LLC was founded on a simple observation: enterprises spend millions on AI that never leaves the pilot phase. We build AI that ships — products that solve real problems on day one, not after six months of consulting.</p>
+            <p class="body-md fade-up fade-up-delay-3">Our team combines deep expertise in machine learning, enterprise software, and domain-specific knowledge across healthcare, finance, legal, and cybersecurity. Every product we build is designed for production from the ground up — battle-tested, compliant, and ready to scale.</p>
+            <div class="about-values fade-up fade-up-delay-4">
+              <div class="value-item">
+                <h4>🎯 Ship First</h4>
+                <p>We optimize for time-to-value. Every product works out of the box with minimal configuration.</p>
+              </div>
+              <div class="value-item">
+                <h4>🔒 Trust by Default</h4>
+                <p>SOC 2, HIPAA, GDPR. Compliance isn't an add-on — it's built into our architecture.</p>
+              </div>
+              <div class="value-item">
+                <h4>🧠 AI That Explains</h4>
+                <p>No black boxes. Every decision our AI makes comes with clear reasoning and audit trails.</p>
+              </div>
+              <div class="value-item">
+                <h4>🤝 Human in the Loop</h4>
+                <p>AI augments your team — it doesn't replace them. You stay in control, always.</p>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="about-numbers fade-up">
+              <div class="about-number">
+                <div class="number">10B+</div>
+                <div class="number-label">API Calls Processed</div>
+              </div>
+              <div class="about-number">
+                <div class="number">2,500+</div>
+                <div class="number-label">Enterprise Customers</div>
+              </div>
+              <div class="about-number">
+                <div class="number">99.97%</div>
+                <div class="number-label">Average Uptime</div>
+              </div>
+              <div class="about-number">
+                <div class="number">40+</div>
+                <div class="number-label">Countries Served</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== DEMO REQUEST ======== -->
+    <section class="section section-gray" id="demo">
+      <div class="container-sm">
+        <div class="text-center mb-48">
+          <span class="label fade-up">Get Started</span>
+          <h2 class="headline-lg mb-16 fade-up fade-up-delay-1">See it in action.</h2>
+          <p class="body-lg fade-up fade-up-delay-2">Book a personalized demo with our team. We'll walk you through the product, answer your questions, and help you find the right plan.</p>
+        </div>
+        <div class="modal fade-up" style="position:relative;transform:none;max-width:100%;box-shadow:var(--shadow-lg)">
+          <form id="demoForm" class="form-grid">
+            <div class="form-group">
+              <label for="demoFirstName">First Name *</label>
+              <input type="text" id="demoFirstName" name="firstName" required placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label for="demoLastName">Last Name *</label>
+              <input type="text" id="demoLastName" name="lastName" required placeholder="Smith">
+            </div>
+            <div class="form-group">
+              <label for="demoEmail">Work Email *</label>
+              <input type="email" id="demoEmail" name="email" required placeholder="jane@company.com">
+            </div>
+            <div class="form-group">
+              <label for="demoPhone">Phone</label>
+              <input type="tel" id="demoPhone" name="phone" placeholder="+1 (555) 000-0000">
+            </div>
+            <div class="form-group">
+              <label for="demoCompany">Company</label>
+              <input type="text" id="demoCompany" name="company" placeholder="Acme Inc.">
+            </div>
+            <div class="form-group">
+              <label for="demoSize">Company Size</label>
+              <select id="demoSize" name="companySize">
+                <option value="">Select size</option>
+                <option value="1-10">1-10 employees</option>
+                <option value="11-50">11-50 employees</option>
+                <option value="51-200">51-200 employees</option>
+                <option value="201-1000">201-1,000 employees</option>
+                <option value="1000+">1,000+ employees</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="demoProduct">Product of Interest *</label>
+              <select id="demoProduct" name="productSlug" required>
+                <option value="">Choose a product</option>
+                <option value="docmind">MicroSIS DocMind — AI Document Intelligence</option>
+                <option value="voiceforge">MicroSIS VoiceForge — AI Voice & Speech Platform</option>
+                <option value="complianceai">MicroSIS ComplianceAI — Regulatory Compliance</option>
+                <option value="predictflow">MicroSIS PredictFlow — Predictive Analytics</option>
+                <option value="guardnet">MicroSIS GuardNet — AI Cybersecurity Shield</option>
+              </select>
+            </div>
+            <div class="form-group full-width">
+              <label for="demoMessage">Anything else we should know?</label>
+              <textarea id="demoMessage" name="message" placeholder="Tell us about your use case, timeline, or specific requirements..."></textarea>
+            </div>
+            <div class="form-group full-width">
+              <button type="submit" class="btn btn-primary btn-lg" style="width:100%">Request a Demo</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======== CONTACT ======== -->
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="contact-grid">
+          <div>
+            <span class="label fade-up">Contact Us</span>
+            <h2 class="headline-lg mb-24 fade-up fade-up-delay-1">Let's talk.</h2>
+            <p class="body-lg mb-48 fade-up fade-up-delay-2">Whether you're exploring options or ready to start, our team is here to help. Reach out — we respond within 24 hours.</p>
+            <div class="contact-info fade-up fade-up-delay-3">
+              <div class="contact-method">
+                <div class="contact-method-icon">📧</div>
+                <div>
+                  <h4>Email</h4>
+                  <p>hello@microsis.ai</p>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">📞</div>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+1 (888) 642-7674</p>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">📍</div>
+                <div>
+                  <h4>Office</h4>
+                  <p>Austin, TX — United States</p>
+                </div>
+              </div>
+              <div class="contact-method">
+                <div class="contact-method-icon">💬</div>
+                <div>
+                  <h4>Live Chat</h4>
+                  <p>Available Mon-Fri, 8am-6pm CT</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="fade-up">
+            <div style="background:var(--white);border-radius:var(--radius);padding:40px;box-shadow:var(--shadow-md)">
+              <h3 class="headline-sm mb-24">Send us a message</h3>
+              <form id="contactForm">
+                <div class="form-grid">
+                  <div class="form-group">
+                    <label for="contactFirstName">First Name *</label>
+                    <input type="text" id="contactFirstName" name="firstName" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="contactLastName">Last Name *</label>
+                    <input type="text" id="contactLastName" name="lastName" required>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="contactEmail">Email *</label>
+                  <input type="email" id="contactEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="contactCompany">Company</label>
+                  <input type="text" id="contactCompany" name="company">
+                </div>
+                <div class="form-group">
+                  <label for="contactProduct">Product Interest</label>
+                  <select id="contactProduct" name="productInterest">
+                    <option value="">Not sure yet</option>
+                    <option value="docmind">DocMind</option>
+                    <option value="voiceforge">VoiceForge</option>
+                    <option value="complianceai">ComplianceAI</option>
+                    <option value="predictflow">PredictFlow</option>
+                    <option value="guardnet">GuardNet</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="contactMessage">Message *</label>
+                  <textarea id="contactMessage" name="message" required placeholder="How can we help?"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary" style="width:100%">Send Message</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ Checkout Modal ============ -->
+  <div class="modal-overlay" id="checkoutModal">
+    <div class="modal">
+      <button class="modal-close" id="checkoutClose">✕</button>
+      <h3 class="headline-sm mb-8">Complete Your Order</h3>
+      <p class="body-sm mb-24" id="checkoutSummary"></p>
+      <form id="checkoutForm">
+        <input type="hidden" id="checkoutProductSlug" name="productSlug">
+        <input type="hidden" id="checkoutPlan" name="plan">
+        <input type="hidden" id="checkoutBillingCycle" name="billingCycle" value="monthly">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="checkoutFirstName">First Name *</label>
+            <input type="text" id="checkoutFirstName" name="firstName" required>
+          </div>
+          <div class="form-group">
+            <label for="checkoutLastName">Last Name *</label>
+            <input type="text" id="checkoutLastName" name="lastName" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="checkoutEmail">Work Email *</label>
+          <input type="email" id="checkoutEmail" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="checkoutPhone">Phone</label>
+          <input type="tel" id="checkoutPhone" name="phone">
+        </div>
+        <div class="form-group">
+          <label for="checkoutCompany">Company</label>
+          <input type="text" id="checkoutCompany" name="company">
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%" id="checkoutSubmitBtn">Place Order</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ============ Footer ============ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="nav-logo">Micro<span>SIS</span>.ai</div>
+          <p>Enterprise AI solutions that ship fast and scale effortlessly. Five products, one platform, infinite possibilities.</p>
+          <div class="newsletter-form" id="newsletterFormWrapper">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email" aria-label="Newsletter email">
+            <button type="button" id="newsletterBtn">Subscribe</button>
+          </div>
+        </div>
+        <div>
+          <h4>Products</h4>
+          <ul class="footer-links">
+            <li><a href="#" data-product="docmind">DocMind</a></li>
+            <li><a href="#" data-product="voiceforge">VoiceForge</a></li>
+            <li><a href="#" data-product="complianceai">ComplianceAI</a></li>
+            <li><a href="#" data-product="predictflow">PredictFlow</a></li>
+            <li><a href="#" data-product="guardnet">GuardNet</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Company</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#demo">Book a Demo</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="#">Documentation</a></li>
+            <li><a href="#">API Reference</a></li>
+            <li><a href="#">Status Page</a></li>
+            <li><a href="#">Security</a></li>
+            <li><a href="#">Changelog</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>&copy; 2026 MicroSIS LLC. All rights reserved.</span>
+        <div class="footer-legal">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Cookie Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script src="/script.js"></script>
+</body>
+</html>
