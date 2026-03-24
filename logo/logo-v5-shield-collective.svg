@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="g5a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3"/>
+      <stop offset="100%" style="stop-color:#00C6FF"/>
+    </linearGradient>
+    <linearGradient id="g5b" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3"/>
+      <stop offset="100%" style="stop-color:#5856D6"/>
+    </linearGradient>
+    <linearGradient id="g5c" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C6FF;stop-opacity:0.15"/>
+      <stop offset="100%" style="stop-color:#0071E3;stop-opacity:0.05"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="500" fill="#FFFFFF"/>
+
+  <g transform="translate(250,175)">
+    <!-- Shield shape -->
+    <path d="M0 -95 L80 -65 L80 15 C80 65 45 100 0 115 C-45 100 -80 65 -80 15 L-80 -65 Z" 
+          fill="url(#g5c)" stroke="url(#g5a)" stroke-width="3"/>
+
+    <!-- Inner shield accent line -->
+    <path d="M0 -78 L65 -53 L65 12 C65 52 37 82 0 95 C-37 82 -65 52 -65 12 L-65 -53 Z" 
+          fill="none" stroke="url(#g5a)" stroke-width="1" opacity="0.2"/>
+
+    <!-- Three people inside shield - central team -->
+    <!-- Center person (elevated) -->
+    <circle cx="0" cy="-30" r="15" fill="url(#g5a)"/>
+    <circle cx="0" cy="-38" r="6.5" fill="#FFF" opacity="0.95"/>
+    <rect x="-8" y="-28" width="16" height="10" rx="4" fill="#FFF" opacity="0.8"/>
+
+    <!-- Left person -->
+    <circle cx="-35" cy="5" r="13" fill="#0071E3" opacity="0.8"/>
+    <circle cx="-35" cy="-2" r="5.5" fill="#FFF" opacity="0.95"/>
+    <rect x="-42" y="7" width="14" height="9" rx="3.5" fill="#FFF" opacity="0.8"/>
+
+    <!-- Right person -->
+    <circle cx="35" cy="5" r="13" fill="#00C6FF" opacity="0.8"/>
+    <circle cx="35" cy="-2" r="5.5" fill="#FFF" opacity="0.95"/>
+    <rect x="28" y="7" width="14" height="9" rx="3.5" fill="#FFF" opacity="0.8"/>
+
+    <!-- Connection arcs -->
+    <path d="M-20 -15 Q0 -5 20 -15" stroke="url(#g5a)" stroke-width="1.5" fill="none" opacity="0.35"/>
+    <path d="M-25 10 Q0 30 25 10" stroke="url(#g5a)" stroke-width="1.5" fill="none" opacity="0.35"/>
+
+    <!-- Circuit/AI detail lines at bottom of shield -->
+    <line x1="-20" y1="55" x2="20" y2="55" stroke="url(#g5a)" stroke-width="1" opacity="0.2"/>
+    <circle cx="-20" cy="55" r="2" fill="#0071E3" opacity="0.3"/>
+    <circle cx="0" cy="55" r="2" fill="#5856D6" opacity="0.3"/>
+    <circle cx="20" cy="55" r="2" fill="#00C6FF" opacity="0.3"/>
+    <line x1="0" y1="55" x2="0" y2="70" stroke="url(#g5b)" stroke-width="1" opacity="0.2"/>
+    <circle cx="0" cy="73" r="3" fill="url(#g5a)" opacity="0.2"/>
+  </g>
+
+  <!-- Text -->
+  <text x="250" y="360" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#1D1D1F" letter-spacing="-1">
+    Micro<tspan fill="url(#g5a)" font-weight="800">SIS</tspan>
+  </text>
+  <text x="250" y="390" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="500" fill="#6E6E73" letter-spacing="4">
+    INTELLIGENT SOLUTIONS, TOGETHER
+  </text>
+
+  <text x="250" y="470" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#AAAAAA">
+    CONCEPT 5 — SHIELD COLLECTIVE
+  </text>
+</svg>

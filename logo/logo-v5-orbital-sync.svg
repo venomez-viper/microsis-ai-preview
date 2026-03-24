@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="g5a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3"/>
+      <stop offset="100%" style="stop-color:#00C6FF"/>
+    </linearGradient>
+    <linearGradient id="g5b" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#5856D6"/>
+      <stop offset="100%" style="stop-color:#0071E3"/>
+    </linearGradient>
+    <linearGradient id="g5c" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00C6FF"/>
+      <stop offset="100%" style="stop-color:#34C759"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" fill="#FFFFFF"/>
+
+  <g transform="translate(250,185)">
+    <!-- Three orbital rings (representing collaboration/sync) -->
+    <!-- Ring 1 - horizontal -->
+    <ellipse cx="0" cy="0" rx="90" ry="30" fill="none" stroke="url(#g5a)" stroke-width="2.5" opacity="0.5" transform="rotate(-30)"/>
+    <!-- Ring 2 -->
+    <ellipse cx="0" cy="0" rx="90" ry="30" fill="none" stroke="url(#g5b)" stroke-width="2.5" opacity="0.5" transform="rotate(30)"/>
+    <!-- Ring 3 -->
+    <ellipse cx="0" cy="0" rx="90" ry="30" fill="none" stroke="url(#g5c)" stroke-width="2.5" opacity="0.5" transform="rotate(90)"/>
+
+    <!-- Three team member nodes on orbits -->
+    <!-- Top node -->
+    <circle cx="0" cy="-90" r="16" fill="#0071E3"/>
+    <circle cx="0" cy="-95" r="5" fill="white" opacity="0.9"/>
+    <ellipse cx="0" cy="-86" rx="7.5" ry="5" fill="white" opacity="0.9"/>
+
+    <!-- Bottom-left node -->
+    <circle cx="-78" cy="45" r="16" fill="#5856D6"/>
+    <circle cx="-78" cy="40" r="5" fill="white" opacity="0.9"/>
+    <ellipse cx="-78" cy="49" rx="7.5" ry="5" fill="white" opacity="0.9"/>
+
+    <!-- Bottom-right node -->
+    <circle cx="78" cy="45" r="16" fill="#00C6FF"/>
+    <circle cx="78" cy="40" r="5" fill="white" opacity="0.9"/>
+    <ellipse cx="78" cy="49" rx="7.5" ry="5" fill="white" opacity="0.9"/>
+
+    <!-- Central core -->
+    <circle cx="0" cy="0" r="22" fill="url(#g5a)" opacity="0.12"/>
+    <circle cx="0" cy="0" r="14" fill="url(#g5a)" opacity="0.25"/>
+    <circle cx="0" cy="0" r="7" fill="url(#g5a)" opacity="0.7"/>
+
+    <!-- Energy pulses from center to nodes -->
+    <line x1="0" y1="-7" x2="0" y2="-74" stroke="#0071E3" stroke-width="1.5" opacity="0.2" stroke-dasharray="3,5"/>
+    <line x1="-6" y1="4" x2="-64" y2="37" stroke="#5856D6" stroke-width="1.5" opacity="0.2" stroke-dasharray="3,5"/>
+    <line x1="6" y1="4" x2="64" y2="37" stroke="#00C6FF" stroke-width="1.5" opacity="0.2" stroke-dasharray="3,5"/>
+    
+    <!-- Tiny orbiting particles -->
+    <circle cx="45" cy="-72" r="3" fill="#0071E3" opacity="0.4"/>
+    <circle cx="-88" cy="-10" r="3" fill="#5856D6" opacity="0.4"/>
+    <circle cx="85" cy="-15" r="3" fill="#00C6FF" opacity="0.4"/>
+  </g>
+
+  <text x="250" y="350" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#1D1D1F" letter-spacing="-1">
+    Micro<tspan fill="url(#g5a)" font-weight="800">SIS</tspan>
+  </text>
+  <text x="250" y="380" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="500" fill="#6E6E73" letter-spacing="4">
+    INTELLIGENT SOLUTIONS, TOGETHER
+  </text>
+  <text x="250" y="470" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#AAAAAA">
+    CONCEPT 5 — ORBITAL SYNC
+  </text>
+</svg>

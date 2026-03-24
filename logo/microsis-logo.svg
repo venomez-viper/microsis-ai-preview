@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 200" width="600" height="200">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00C6FF;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="grad2" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#0071E3;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#5856D6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00C6FF;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Teamwork Icon: 3 interconnected people forming a unified shape -->
+  <g transform="translate(30, 25)">
+    <!-- Center person (slightly elevated - leader/connector) -->
+    <circle cx="70" cy="38" r="14" fill="url(#grad1)" />
+    <path d="M70 55 C55 55 45 68 45 80 L45 95 C45 98 47 100 50 100 L90 100 C93 100 95 98 95 95 L95 80 C95 68 85 55 70 55Z" fill="url(#grad1)" opacity="0.9"/>
+
+    <!-- Left person -->
+    <circle cx="25" cy="58" r="12" fill="#0071E3" opacity="0.75"/>
+    <path d="M25 73 C14 73 5 83 5 93 L5 105 C5 107.5 7 109.5 9.5 109.5 L40.5 109.5 C43 109.5 45 107.5 45 105 L45 93 C45 83 36 73 25 73Z" fill="#0071E3" opacity="0.65"/>
+
+    <!-- Right person -->
+    <circle cx="115" cy="58" r="12" fill="#00C6FF" opacity="0.75"/>
+    <path d="M115 73 C104 73 95 83 95 93 L95 105 C95 107.5 97 109.5 99.5 109.5 L130.5 109.5 C133 109.5 135 107.5 135 105 L135 93 C135 83 126 73 115 73Z" fill="#00C6FF" opacity="0.65"/>
+
+    <!-- Connection arcs (teamwork links) -->
+    <path d="M38 62 Q55 50 58 55" stroke="url(#grad2)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M102 62 Q85 50 82 55" stroke="url(#grad2)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M30 95 Q70 120 110 95" stroke="url(#grad2)" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="4,3" opacity="0.4"/>
+
+    <!-- Data/AI nodes floating above (representing AI intelligence) -->
+    <circle cx="70" cy="18" r="3" fill="#00C6FF" opacity="0.5"/>
+    <circle cx="55" cy="25" r="2" fill="#5856D6" opacity="0.4"/>
+    <circle cx="85" cy="25" r="2" fill="#5856D6" opacity="0.4"/>
+    <line x1="70" y1="18" x2="55" y2="25" stroke="#5856D6" stroke-width="1" opacity="0.3"/>
+    <line x1="70" y1="18" x2="85" y2="25" stroke="#5856D6" stroke-width="1" opacity="0.3"/>
+    <line x1="70" y1="21" x2="70" y2="24" stroke="#00C6FF" stroke-width="1" opacity="0.3"/>
+  </g>
+
+  <!-- Company Name -->
+  <g transform="translate(195, 70)">
+    <!-- "Micro" in dark -->
+    <text font-family="'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+          font-size="62" font-weight="700" fill="#1D1D1F" letter-spacing="-1.5">
+      Micro
+    </text>
+    <!-- "SIS" in gradient blue -->
+    <text x="195" font-family="'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+          font-size="62" font-weight="800" fill="url(#grad1)" letter-spacing="-1">
+      SIS
+    </text>
+  </g>
+
+  <!-- ".ai" tag -->
+  <text x="498" y="70" font-family="'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="30" font-weight="400" fill="#6E6E73" letter-spacing="0">
+    .ai
+  </text>
+
+  <!-- Tagline -->
+  <text x="198" y="105" font-family="'Inter', 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+        font-size="15" font-weight="500" fill="#6E6E73" letter-spacing="3.5">
+    INTELLIGENT SOLUTIONS, TOGETHER
+  </text>
+
+  <!-- Subtle underline accent -->
+  <rect x="198" y="115" width="60" height="2.5" rx="1.25" fill="url(#grad1)" opacity="0.7"/>
+</svg>

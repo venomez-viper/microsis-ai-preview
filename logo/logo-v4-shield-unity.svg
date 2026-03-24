@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="g4a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3"/>
+      <stop offset="100%" style="stop-color:#00C6FF"/>
+    </linearGradient>
+    <linearGradient id="g4b" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3"/>
+      <stop offset="100%" style="stop-color:#5856D6"/>
+    </linearGradient>
+  </defs>
+  <rect width="500" height="500" fill="#FFFFFF"/>
+
+  <g transform="translate(250,180)">
+    <!-- Shield shape -->
+    <path d="M0,-95 L75,-65 L75,15 C75,60 40,90 0,110 C-40,90 -75,60 -75,15 L-75,-65 Z" 
+          fill="url(#g4b)" opacity="0.08" stroke="url(#g4a)" stroke-width="2.5"/>
+
+    <!-- Inner shield -->
+    <path d="M0,-70 L52,-48 L52,8 C52,40 28,62 0,78 C-28,62 -52,40 -52,8 L-52,-48 Z" 
+          fill="url(#g4b)" opacity="0.06"/>
+
+    <!-- Three interlocking people inside shield -->
+    <!-- Center person -->
+    <circle cx="0" cy="-25" r="13" fill="#0071E3"/>
+    <path d="M0 -10 C-15 -10 -22 2 -22 12 L-22 22 C-22 24.5 -20 26.5 -17.5 26.5 L17.5 26.5 C20 26.5 22 24.5 22 22 L22 12 C22 2 15 -10 0 -10Z" fill="#0071E3" opacity="0.85"/>
+
+    <!-- Left person (overlapping) -->
+    <circle cx="-35" cy="-8" r="11" fill="#5856D6" opacity="0.8"/>
+    <path d="M-35 5 C-47 5 -53 15 -53 23 L-53 32 C-53 34 -51.5 35.5 -49.5 35.5 L-20.5 35.5 C-18.5 35.5 -17 34 -17 32 L-17 23 C-17 15 -23 5 -35 5Z" fill="#5856D6" opacity="0.6"/>
+
+    <!-- Right person (overlapping) -->
+    <circle cx="35" cy="-8" r="11" fill="#00C6FF" opacity="0.8"/>
+    <path d="M35 5 C23 5 17 15 17 23 L17 32 C17 34 18.5 35.5 20.5 35.5 L49.5 35.5 C51.5 35.5 53 34 53 32 L53 23 C53 15 47 5 35 5Z" fill="#00C6FF" opacity="0.6"/>
+
+    <!-- Unity arc under people -->
+    <path d="M-40 45 Q0 65 40 45" stroke="url(#g4a)" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+    <path d="M-30 52 Q0 68 30 52" stroke="url(#g4a)" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.3"/>
+
+    <!-- Small star/spark at shield top -->
+    <polygon points="0,-85 3,-78 10,-78 4,-73 6,-66 0,-70 -6,-66 -4,-73 -10,-78 -3,-78" fill="url(#g4a)" opacity="0.6"/>
+  </g>
+
+  <text x="250" y="355" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#1D1D1F" letter-spacing="-1">
+    Micro<tspan fill="url(#g4a)" font-weight="800">SIS</tspan>
+  </text>
+  <text x="250" y="385" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="500" fill="#6E6E73" letter-spacing="4">
+    INTELLIGENT SOLUTIONS, TOGETHER
+  </text>
+  <text x="250" y="470" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#AAAAAA">
+    CONCEPT 4 — SHIELD UNITY
+  </text>
+</svg>

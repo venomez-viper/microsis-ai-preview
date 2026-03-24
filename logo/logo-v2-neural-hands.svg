@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="500" height="500">
+  <defs>
+    <linearGradient id="g2a" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0071E3"/>
+      <stop offset="100%" style="stop-color:#5856D6"/>
+    </linearGradient>
+    <linearGradient id="g2b" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#00C6FF"/>
+      <stop offset="100%" style="stop-color:#0071E3"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="500" height="500" fill="#FFFFFF"/>
+
+  <g transform="translate(250,190)">
+    <!-- Left hand/arm reaching right -->
+    <path d="M-90 20 C-70 20 -55 5 -40 -10 C-30 -20 -20 -25 -10 -20 C-5 -17 -3 -10 -5 -3" 
+          stroke="#0071E3" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M-88 35 C-65 35 -50 20 -35 5 C-25 -5 -18 -8 -10 -3" 
+          stroke="#0071E3" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M-85 50 C-65 50 -48 38 -35 25 C-25 15 -18 10 -12 13" 
+          stroke="#0071E3" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Right hand/arm reaching left -->
+    <path d="M90 20 C70 20 55 5 40 -10 C30 -20 20 -25 10 -20 C5 -17 3 -10 5 -3" 
+          stroke="#00C6FF" stroke-width="6" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M88 35 C65 35 50 20 35 5 C25 -5 18 -8 10 -3" 
+          stroke="#00C6FF" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <path d="M85 50 C65 50 48 38 35 25 C25 15 18 10 12 13" 
+          stroke="#00C6FF" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.4"/>
+
+    <!-- Central convergence point - AI brain/spark -->
+    <circle cx="0" cy="-5" r="18" fill="none" stroke="url(#g2a)" stroke-width="2" opacity="0.3"/>
+    <circle cx="0" cy="-5" r="10" fill="url(#g2a)" opacity="0.15"/>
+    <circle cx="0" cy="-5" r="5" fill="url(#g2a)" opacity="0.5"/>
+    
+    <!-- Neural network dots -->
+    <circle cx="-25" cy="-25" r="3" fill="#0071E3" opacity="0.5"/>
+    <circle cx="25" cy="-25" r="3" fill="#00C6FF" opacity="0.5"/>
+    <circle cx="-18" cy="15" r="2.5" fill="#5856D6" opacity="0.4"/>
+    <circle cx="18" cy="15" r="2.5" fill="#5856D6" opacity="0.4"/>
+    <circle cx="0" cy="-35" r="2.5" fill="#0071E3" opacity="0.35"/>
+    
+    <!-- Neural connections -->
+    <line x1="0" y1="-5" x2="-25" y2="-25" stroke="#0071E3" stroke-width="1" opacity="0.25"/>
+    <line x1="0" y1="-5" x2="25" y2="-25" stroke="#00C6FF" stroke-width="1" opacity="0.25"/>
+    <line x1="0" y1="-5" x2="-18" y2="15" stroke="#5856D6" stroke-width="1" opacity="0.2"/>
+    <line x1="0" y1="-5" x2="18" y2="15" stroke="#5856D6" stroke-width="1" opacity="0.2"/>
+    <line x1="0" y1="-5" x2="0" y2="-35" stroke="#0071E3" stroke-width="1" opacity="0.2"/>
+
+    <!-- Spark lines -->
+    <line x1="-3" y1="-12" x2="3" y2="-12" stroke="#FFF" stroke-width="1.5" opacity="0.8"/>
+    <line x1="0" y1="-15" x2="0" y2="-9" stroke="#FFF" stroke-width="1.5" opacity="0.8"/>
+  </g>
+
+  <!-- Text -->
+  <text x="250" y="340" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="58" font-weight="700" fill="#1D1D1F" letter-spacing="-1">
+    Micro<tspan fill="url(#g2a)" font-weight="800">SIS</tspan>
+  </text>
+  <text x="250" y="370" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="14" font-weight="500" fill="#6E6E73" letter-spacing="4">
+    INTELLIGENT SOLUTIONS, TOGETHER
+  </text>
+
+  <text x="250" y="470" text-anchor="middle" font-family="'Inter','Segoe UI',Helvetica,Arial,sans-serif" font-size="13" font-weight="600" fill="#AAAAAA">
+    CONCEPT 2 — NEURAL HANDS
+  </text>
+</svg>

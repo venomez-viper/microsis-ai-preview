@@ -286,13 +286,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .nav-logo {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: var(--black);
-  letter-spacing: -0.03em;
   display: flex;
   align-items: center;
-  gap: 6px;
+}
+
+.nav-logo-img {
+  height: 36px;
+  width: auto;
+}
+
+.footer-logo-img {
+  height: 32px;
+  width: auto;
+  margin-bottom: 4px;
 }
 
 .nav-logo span {
