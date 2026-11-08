@@ -1,0 +1,159 @@
+/*
+ * MicroSIS.ai glass logo reveal: brand intro splash (#glassLogoSplash).
+ * Every selector is scoped with the gls- prefix. Pairs with /features/glass-logo-reveal.js.
+ */
+
+.gls-splash {
+  --gls-bg: #FBFBFD;
+  --gls-ink: #1D1D1F;
+  --gls-accent: #0071E3;
+  --gls-skip-bg: rgba(255, 255, 255, 0.72);
+  --gls-skip-border: rgba(0, 0, 0, 0.14);
+  --gls-skip-ink: #1D1D1F;
+  --gls-tile: 220px;
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: block;
+  background: var(--gls-bg);
+  opacity: 1;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Failsafe: if the script never runs, the splash still gets out of the way. */
+  animation: gls-failsafe 0.4s ease 6s forwards;
+}
+
+.gls-splash[hidden] {
+  display: none !important;
+}
+
+[data-theme="dark"] .gls-splash,
+.gls-splash[data-look="dark"] {
+  --gls-bg: #000000;
+  --gls-ink: #F5F5F7;
+  --gls-accent: #2997FF;
+  --gls-skip-bg: rgba(28, 28, 30, 0.72);
+  --gls-skip-border: rgba(255, 255, 255, 0.16);
+  --gls-skip-ink: #F5F5F7;
+}
+
+.gls-splash[data-look="light"] {
+  --gls-bg: #FBFBFD;
+  --gls-ink: #1D1D1F;
+  --gls-accent: #0071E3;
+  --gls-skip-bg: rgba(255, 255, 255, 0.72);
+  --gls-skip-border: rgba(0, 0, 0, 0.14);
+  --gls-skip-ink: #1D1D1F;
+}
+
+/* The script owns the timing once it is running. */
+.gls-splash.is-live {
+  animation: none;
+}
+
+.gls-splash.is-leaving {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gls-splash.is-skip {
+  transition-duration: 0.22s;
+}
+
+@keyframes gls-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.gls-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.gls-stage canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.gls-wordmark {
+  position: absolute;
+  left: 50%;
+  top: calc(50% + var(--gls-tile) * 0.3 + 14px);
+  margin: 0;
+  transform: translate(-50%, 10px);
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  color: var(--gls-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: clamp(24px, 3.4vw, 34px);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.022em;
+  transition: opacity 0.55s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.gls-wordmark .gls-ai {
+  color: var(--gls-accent);
+}
+
+.gls-splash.is-word .gls-wordmark {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.gls-skip {
+  position: absolute;
+  right: max(20px, env(safe-area-inset-right));
+  bottom: max(20px, env(safe-area-inset-bottom));
+  min-height: 36px;
+  padding: 9px 16px;
+  appearance: none;
+  -webkit-appearance: none;
+  border: 1px solid var(--gls-skip-border);
+  border-radius: 980px;
+  background: var(--gls-skip-bg);
+  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  backdrop-filter: saturate(180%) blur(12px);
+  color: var(--gls-skip-ink);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.gls-skip:hover {
+  border-color: var(--gls-accent);
+}
+
+.gls-skip:active {
+  transform: scale(0.97);
+}
+
+.gls-skip:focus-visible {
+  outline: 2px solid var(--gls-accent);
+  outline-offset: 3px;
+}
+
+/* Scroll lock while the intro is on screen (class set on <html> by the script). */
+html.gls-lock,
+html.gls-lock body {
+  overflow: hidden !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gls-splash {
+    display: none !important;
+  }
+}

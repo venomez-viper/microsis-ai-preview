@@ -1,174 +1,93 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" width="1200" height="760">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0D1117"/>
-      <stop offset="100%" style="stop-color:#0D1F3C"/>
+      <stop offset="0%" style="stop-color:#0B0C10"/>
+      <stop offset="100%" style="stop-color:#12151E"/>
     </linearGradient>
-    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#F5C842"/>
-      <stop offset="100%" style="stop-color:#E8A020"/>
+    <linearGradient id="accentBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2997FF"/>
+      <stop offset="100%" style="stop-color:#0071E3"/>
     </linearGradient>
-    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#0071E3"/>
-      <stop offset="100%" style="stop-color:#00C6FF"/>
-    </linearGradient>
-    <linearGradient id="purple" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#5856D6"/>
-      <stop offset="100%" style="stop-color:#9B59B6"/>
-    </linearGradient>
-    <linearGradient id="red" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF3B30"/>
-      <stop offset="100%" style="stop-color:#FF9500"/>
-    </linearGradient>
-    <linearGradient id="pink" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#FF2D55"/>
-      <stop offset="100%" style="stop-color:#FF6B9D"/>
-    </linearGradient>
-    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#34C759"/>
-      <stop offset="100%" style="stop-color:#30D158"/>
-    </linearGradient>
-    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#00C6FF"/>
-      <stop offset="100%" style="stop-color:#00E5CC"/>
-    </linearGradient>
-    <!-- Glow filters -->
-    <filter id="glow-gold">
-      <feGaussianBlur stdDeviation="4" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="glow-blue">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
-    </filter>
-    <filter id="shadow">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.5)"/>
-    </filter>
-    <!-- Grid pattern -->
     <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1E3A5F" stroke-width="0.5" opacity="0.4"/>
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>
     </pattern>
   </defs>
 
-  <!-- Background -->
-  <rect width="1200" height="800" fill="url(#bg)"/>
-  <rect width="1200" height="800" fill="url(#grid)"/>
+  <!-- Canvas -->
+  <rect width="1200" height="760" fill="url(#bg)"/>
+  <rect width="1200" height="760" fill="url(#grid)"/>
 
-  <!-- Subtle outer glow ring around center -->
-  <circle cx="600" cy="390" r="240" fill="none" stroke="#F5C842" stroke-width="1" opacity="0.08"/>
-  <circle cx="600" cy="390" r="195" fill="none" stroke="#F5C842" stroke-width="1" opacity="0.05"/>
+  <!-- Concentric Orbital Rings -->
+  <circle cx="600" cy="390" r="250" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="4 6"/>
+  <circle cx="600" cy="390" r="165" fill="none" stroke="rgba(41,151,255,0.16)" stroke-width="1"/>
 
-  <!-- Connection lines from Drona to each agent -->
-  <!-- Arjuna (top) -->
-  <line x1="600" y1="295" x2="600" y2="175" stroke="url(#blue)" stroke-width="2" opacity="0.6"/>
-  <circle cx="600" cy="235" r="3" fill="#00C6FF" opacity="0.8"/>
+  <!-- Radial Bus Connections -->
+  <line x1="600" y1="310" x2="600" y2="195" stroke="rgba(41,151,255,0.45)" stroke-width="1.5"/>
+  <line x1="668" y1="350" x2="806" y2="270" stroke="rgba(41,151,255,0.45)" stroke-width="1.5"/>
+  <line x1="668" y1="430" x2="806" y2="510" stroke="rgba(41,151,255,0.45)" stroke-width="1.5"/>
+  <line x1="600" y1="470" x2="600" y2="585" stroke="rgba(41,151,255,0.45)" stroke-width="1.5"/>
+  <line x1="532" y1="430" x2="394" y2="510" stroke="rgba(41,151,255,0.45)" stroke-width="1.5"/>
+  <line x1="532" y1="350" x2="394" y2="270" stroke="rgba(41,151,255,0.45)" stroke-width="1.5"/>
 
-  <!-- Krishna (top-right) -->
-  <line x1="668" y1="332" x2="820" y2="245" stroke="url(#purple)" stroke-width="2" opacity="0.6"/>
-  <circle cx="744" cy="288" r="3" fill="#9B59B6" opacity="0.8"/>
+  <!-- Header -->
+  <text x="600" y="54" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display',Inter,sans-serif" font-size="22" font-weight="600" fill="#F5F5F7" letter-spacing="-0.4">OpenClaw Multi-Agent Topology</text>
+  <text x="600" y="78" text-anchor="middle" font-family="ui-monospace,'SF Mono',Menlo,monospace" font-size="11" fill="#86868B" letter-spacing="1.5">DETERMINISTIC CONSENSUS &amp; POLICY VERIFICATION</text>
 
-  <!-- Bheem (bottom-right) -->
-  <line x1="668" y1="448" x2="820" y2="535" stroke="url(#red)" stroke-width="2" opacity="0.6"/>
-  <circle cx="744" cy="491" r="3" fill="#FF9500" opacity="0.8"/>
-
-  <!-- Sahadeva (bottom) -->
-  <line x1="600" y1="485" x2="600" y2="605" stroke="url(#cyan)" stroke-width="2" opacity="0.6"/>
-  <circle cx="600" cy="545" r="3" fill="#00E5CC" opacity="0.8"/>
-
-  <!-- Vidura (bottom-left) -->
-  <line x1="532" y1="448" x2="380" y2="535" stroke="url(#green)" stroke-width="2" opacity="0.6"/>
-  <circle cx="456" cy="491" r="3" fill="#34C759" opacity="0.8"/>
-
-  <!-- Draupadi (top-left) -->
-  <line x1="532" y1="332" x2="380" y2="245" stroke="url(#pink)" stroke-width="2" opacity="0.6"/>
-  <circle cx="456" cy="288" r="3" fill="#FF6B9D" opacity="0.8"/>
-
-  <!-- ===== DRONA (Center) ===== -->
-  <g transform="translate(600, 390)" filter="url(#glow-gold)">
-    <!-- Hexagon -->
-    <polygon points="0,-80 69,-40 69,40 0,80 -69,40 -69,-40" fill="#0D1F3C" stroke="url(#gold)" stroke-width="3"/>
-    <polygon points="0,-72 62,-36 62,36 0,72 -62,36 -62,-36" fill="rgba(245,200,66,0.08)"/>
-    <!-- Icon -->
-    <text text-anchor="middle" y="-18" font-size="32">🏹</text>
-    <!-- Name -->
-    <text text-anchor="middle" y="16" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="18" font-weight="700" fill="#F5C842">DRONA</text>
-    <!-- Role -->
-    <text text-anchor="middle" y="34" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="10" font-weight="500" fill="#A0A8B8">AI Guru · Orchestrator</text>
+  <!-- 01. DRONA (Center Orchestrator) -->
+  <g transform="translate(600, 390)">
+    <circle r="76" fill="#161821" stroke="url(#accentBlue)" stroke-width="2"/>
+    <circle r="64" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+    <text text-anchor="middle" y="-22" font-family="ui-monospace,'SF Mono',monospace" font-size="11" font-weight="600" fill="#2997FF">NODE 01</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,'SF Pro Display',Inter,sans-serif" font-size="20" font-weight="700" fill="#F5F5F7" letter-spacing="-0.3">DRONA</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#A1A1A6">Master Orchestrator</text>
+    <text text-anchor="middle" y="40" font-family="ui-monospace,'SF Mono',monospace" font-size="9.5" fill="#6E6E73">Intent &amp; Consensus</text>
   </g>
 
-  <!-- ===== ARJUNA (Top) ===== -->
-  <g transform="translate(600, 120)" filter="url(#shadow)">
-    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#0D1F3C" stroke="url(#blue)" stroke-width="2.5"/>
-    <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="rgba(0,113,227,0.08)"/>
-    <text text-anchor="middle" y="-10" font-size="24">🎯</text>
-    <text text-anchor="middle" y="14" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#00C6FF">ARJUNA</text>
-    <text text-anchor="middle" y="28" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="9" fill="#6E8AA8">Precision Executor</text>
-    <text text-anchor="middle" y="40" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="8" fill="#4A6A88">Code · Analysis</text>
+  <!-- 02. ARJUNA (Top) -->
+  <g transform="translate(600, 140)">
+    <rect x="-88" y="-48" width="176" height="96" rx="18" fill="#161821" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+    <text text-anchor="middle" y="-18" font-family="ui-monospace,'SF Mono',monospace" font-size="10" font-weight="600" fill="#2997FF">02 · DOCMIND</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="16" font-weight="600" fill="#F5F5F7">Arjuna</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#86868B">Precision Schema Execution</text>
   </g>
 
-  <!-- ===== KRISHNA (Top-Right) ===== -->
-  <g transform="translate(880, 210)" filter="url(#shadow)">
-    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#0D1F3C" stroke="url(#purple)" stroke-width="2.5"/>
-    <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="rgba(88,86,214,0.08)"/>
-    <text text-anchor="middle" y="-10" font-size="24">🪈</text>
-    <text text-anchor="middle" y="14" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#9B59B6">KRISHNA</text>
-    <text text-anchor="middle" y="28" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="9" fill="#6E5A8A">Strategic Advisor</text>
-    <text text-anchor="middle" y="40" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="8" fill="#4A3A6A">Planning · Strategy</text>
+  <!-- 03. KRISHNA (Top-Right) -->
+  <g transform="translate(866, 236)">
+    <rect x="-88" y="-48" width="176" height="96" rx="18" fill="#161821" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+    <text text-anchor="middle" y="-18" font-family="ui-monospace,'SF Mono',monospace" font-size="10" font-weight="600" fill="#2997FF">03 · STRATEGY</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="16" font-weight="600" fill="#F5F5F7">Krishna</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#86868B">Horizon &amp; Policy Planning</text>
   </g>
 
-  <!-- ===== BHEEM (Bottom-Right) ===== -->
-  <g transform="translate(880, 570)" filter="url(#shadow)">
-    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#0D1F3C" stroke="url(#red)" stroke-width="2.5"/>
-    <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="rgba(255,59,48,0.08)"/>
-    <text text-anchor="middle" y="-10" font-size="24">💪</text>
-    <text text-anchor="middle" y="14" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#FF9500">BHEEM</text>
-    <text text-anchor="middle" y="28" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="9" fill="#8A6A3A">Heavy Lifter</text>
-    <text text-anchor="middle" y="40" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="8" fill="#6A4A2A">Bulk Ops · Deployments</text>
+  <!-- 04. BHEEM (Bottom-Right) -->
+  <g transform="translate(866, 544)">
+    <rect x="-88" y="-48" width="176" height="96" rx="18" fill="#161821" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+    <text text-anchor="middle" y="-18" font-family="ui-monospace,'SF Mono',monospace" font-size="10" font-weight="600" fill="#2997FF">04 · COMPUTE</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="16" font-weight="600" fill="#F5F5F7">Bheem</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#86868B">Batch &amp; Edge Containment</text>
   </g>
 
-  <!-- ===== SAHADEVA (Bottom) ===== -->
-  <g transform="translate(600, 660)" filter="url(#shadow)">
-    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#0D1F3C" stroke="url(#cyan)" stroke-width="2.5"/>
-    <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="rgba(0,198,255,0.08)"/>
-    <text text-anchor="middle" y="-10" font-size="24">🔮</text>
-    <text text-anchor="middle" y="14" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#00E5CC">SAHADEVA</text>
-    <text text-anchor="middle" y="28" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="9" fill="#3A8A88">The Seer</text>
-    <text text-anchor="middle" y="40" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="8" fill="#2A6A68">Monitoring · Analytics</text>
+  <!-- 05. SAHADEVA (Bottom) -->
+  <g transform="translate(600, 640)">
+    <rect x="-88" y="-48" width="176" height="96" rx="18" fill="#161821" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+    <text text-anchor="middle" y="-18" font-family="ui-monospace,'SF Mono',monospace" font-size="10" font-weight="600" fill="#2997FF">05 · PREDICTFLOW</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="16" font-weight="600" fill="#F5F5F7">Sahadeva</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#86868B">Temporal &amp; SHAP Modeling</text>
   </g>
 
-  <!-- ===== VIDURA (Bottom-Left) ===== -->
-  <g transform="translate(320, 570)" filter="url(#shadow)">
-    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#0D1F3C" stroke="url(#green)" stroke-width="2.5"/>
-    <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="rgba(52,199,89,0.08)"/>
-    <text text-anchor="middle" y="-10" font-size="24">🧠</text>
-    <text text-anchor="middle" y="14" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#34C759">VIDURA</text>
-    <text text-anchor="middle" y="28" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="9" fill="#3A7A4A">Wise Counsel</text>
-    <text text-anchor="middle" y="40" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="8" fill="#2A5A3A">Compliance · Security</text>
+  <!-- 06. VIDURA (Bottom-Left) -->
+  <g transform="translate(334, 544)">
+    <rect x="-88" y="-48" width="176" height="96" rx="18" fill="#161821" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+    <text text-anchor="middle" y="-18" font-family="ui-monospace,'SF Mono',monospace" font-size="10" font-weight="600" fill="#2997FF">06 · COMPLIANCE &amp; GUARDNET</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="16" font-weight="600" fill="#F5F5F7">Vidura</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#86868B">Governance &amp; Inline Veto</text>
   </g>
 
-  <!-- ===== DRAUPADI (Top-Left) ===== -->
-  <g transform="translate(320, 210)" filter="url(#shadow)">
-    <polygon points="0,-60 52,-30 52,30 0,60 -52,30 -52,-30" fill="#0D1F3C" stroke="url(#pink)" stroke-width="2.5"/>
-    <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26" fill="rgba(255,45,85,0.08)"/>
-    <text text-anchor="middle" y="-10" font-size="24">🔥</text>
-    <text text-anchor="middle" y="14" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="14" font-weight="700" fill="#FF6B9D">DRAUPADI</text>
-    <text text-anchor="middle" y="28" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="9" fill="#8A4A68">Communicator</text>
-    <text text-anchor="middle" y="40" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="8" fill="#6A2A48">Content · Marketing</text>
+  <!-- 07. DRAUPADI (Top-Left) -->
+  <g transform="translate(334, 236)">
+    <rect x="-88" y="-48" width="176" height="96" rx="18" fill="#161821" stroke="rgba(255,255,255,0.16)" stroke-width="1.5"/>
+    <text text-anchor="middle" y="-18" font-family="ui-monospace,'SF Mono',monospace" font-size="10" font-weight="600" fill="#2997FF">07 · VOICEFORGE</text>
+    <text text-anchor="middle" y="4" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="16" font-weight="600" fill="#F5F5F7">Draupadi</text>
+    <text text-anchor="middle" y="24" font-family="-apple-system,BlinkMacSystemFont,Inter,sans-serif" font-size="11" fill="#86868B">Acoustic &amp; Linguistic Stream</text>
   </g>
-
-  <!-- ===== OpenClaw badge (top right) ===== -->
-  <g transform="translate(1100, 40)">
-    <rect x="-90" y="-18" width="150" height="28" rx="14" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
-    <text text-anchor="middle" y="5" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="11" fill="#6E8AA8">Powered by OpenClaw</text>
-  </g>
-
-  <!-- ===== Header ===== -->
-  <text x="600" y="42" text-anchor="middle" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="28" font-weight="800" fill="#FFFFFF" letter-spacing="-0.5">MicroSIS AI Agent Council</text>
-  <text x="600" y="66" text-anchor="middle" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="13" fill="#6E8AA8" letter-spacing="2">MAHABHARATA-INSPIRED MULTI-AGENT SYSTEM</text>
-
-  <!-- ===== Footer ===== -->
-  <rect x="0" y="750" width="1200" height="50" fill="rgba(0,0,0,0.3)"/>
-  <!-- MicroSIS logo text -->
-  <text x="600" y="782" text-anchor="middle" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="20" font-weight="700" fill="#FFFFFF">Micro<tspan fill="#0071E3">SIS</tspan><tspan font-weight="400" fill="#6E8AA8" font-size="15">.ai</tspan></text>
-  <text x="600" y="796" text-anchor="middle" font-family="'Segoe UI',Inter,Arial,sans-serif" font-size="10" fill="#4A6A88" letter-spacing="3">INTELLIGENT SOLUTIONS, TOGETHER</text>
 </svg>

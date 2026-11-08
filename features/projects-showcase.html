@@ -1,0 +1,141 @@
+<!--
+  MicroSIS.ai · Projects Showcase (#projects)
+  WHERE: insert immediately AFTER the closing </section> of
+         <section class="section" id="products"> and BEFORE
+         <div id="productDetails"></div> (the "PRODUCT DETAIL VIEWS" block),
+         i.e. between current lines ~388 and ~390 of public/index.html.
+  ASSETS: <link rel="stylesheet" href="/features/projects-showcase.css"> in <head>
+          <script src="/features/projects-showcase.js" defer></script> after script.js
+  NAV: add "Projects" -> #projects to #navLinks.
+  Note: both #products and #projects use the plain .section background, so the
+  coordinator may add .section-alt here if alternating surfaces are wanted.
+-->
+<!-- ======== SELECTED WORK (#projects) ======== -->
+<section class="section pc-section" id="projects" aria-labelledby="pcHeading">
+  <div class="container">
+    <div class="section-intro">
+      <p class="eyebrow fade-up">Selected Work</p>
+      <h2 class="display-lg fade-up fade-up-delay-1" id="pcHeading">Five production workloads.<br>Each one traceable.</h2>
+      <p class="lead-md fade-up fade-up-delay-2">
+        Representative projects built on the five MicroSIS.ai engines. Each card lists the council nodes involved and the figures published on this page, and opens the section where you can inspect it.
+      </p>
+    </div>
+
+    <ul class="pc-grid" id="projectsShowcase" role="list">
+      <!-- 1 · DocMind -->
+      <li class="pc-item fade-up">
+        <a class="pc-card pc-tone-docmind" href="#xray" data-pc-project="docmind" aria-labelledby="pcTitle1" aria-describedby="pcDesc1">
+          <span class="pc-panel" aria-hidden="true"></span>
+          <span class="pc-glow" aria-hidden="true"></span>
+          <span class="pc-blobs" aria-hidden="true"><span class="pc-blob pc-blob-a"></span><span class="pc-blob pc-blob-b"></span></span>
+          <div class="pc-content">
+            <div class="pc-head">
+              <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M4.268 21a2 2 0 0 0 1.727 1H18a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v3"/><path d="m9 18-1.5-1.5"/><circle cx="5" cy="14" r="3"/></svg></span>
+              <p class="pc-eyebrow">DocMind · Arjuna + Vidura</p>
+            </div>
+            <h3 class="pc-title" id="pcTitle1">Coordinate-verified contract intelligence</h3>
+            <p class="pc-desc" id="pcDesc1">Commercial MSAs and invoices parsed into typed fields, each value anchored to SHA-256 page coordinates so reviewers can trace it back to the source PDF.</p>
+            <ul class="pc-tags" role="list">
+              <li>99.7% field precision</li>
+              <li>284 ms</li>
+              <li>SHA-256 anchored</li>
+            </ul>
+            <span class="pc-cta">View project <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      </li>
+
+      <!-- 2 · VoiceForge + DocMind -->
+      <li class="pc-item fade-up fade-up-delay-1">
+        <a class="pc-card pc-tone-voiceforge" href="#playground" data-pc-project="voiceforge" aria-labelledby="pcTitle2" aria-describedby="pcDesc2">
+          <span class="pc-panel" aria-hidden="true"></span>
+          <span class="pc-glow" aria-hidden="true"></span>
+          <span class="pc-blobs" aria-hidden="true"><span class="pc-blob pc-blob-a"></span><span class="pc-blob pc-blob-b"></span></span>
+          <div class="pc-content">
+            <div class="pc-head">
+              <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 13a2 2 0 0 0 2-2V7a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0V4a2 2 0 0 1 4 0v13a2 2 0 0 0 4 0v-4a2 2 0 0 1 2-2"/></svg></span>
+              <p class="pc-eyebrow">VoiceForge + DocMind · HL7 FHIR</p>
+            </div>
+            <h3 class="pc-title" id="pcTitle2">Bilingual clinical intake</h3>
+            <p class="pc-desc" id="pcDesc2">Spoken intake and clinical faxes routed to Draupadi and Arjuna inside the HIPAA enclave, then structured into an HL7 FHIR R4 bundle.</p>
+            <ul class="pc-tags" role="list">
+              <li>38 ms time-to-first-audio</li>
+              <li>HL7 FHIR R4</li>
+              <li>HIPAA BAA</li>
+            </ul>
+            <span class="pc-cta">View project <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      </li>
+
+      <!-- 3 · ComplianceAI -->
+      <li class="pc-item fade-up fade-up-delay-2">
+        <a class="pc-card pc-tone-compliance" href="#products" data-pc-project="complianceai" aria-labelledby="pcTitle3" aria-describedby="pcDesc3">
+          <span class="pc-panel" aria-hidden="true"></span>
+          <span class="pc-glow" aria-hidden="true"></span>
+          <span class="pc-blobs" aria-hidden="true"><span class="pc-blob pc-blob-a"></span><span class="pc-blob pc-blob-b"></span></span>
+          <div class="pc-content">
+            <div class="pc-head">
+              <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg></span>
+              <p class="pc-eyebrow">ComplianceAI · Vidura</p>
+            </div>
+            <h3 class="pc-title" id="pcTitle3">Continuous regulatory alignment</h3>
+            <p class="pc-desc" id="pcDesc3">Regulatory updates mapped to the internal control matrix as they publish, with audit evidence collected for SOX, SEC and Basel III reviews.</p>
+            <ul class="pc-tags" role="list">
+              <li>10,000+ statutory feeds</li>
+              <li>70% less audit prep</li>
+              <li>Air-gapped option</li>
+            </ul>
+            <span class="pc-cta">View project <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      </li>
+
+      <!-- 4 · PredictFlow -->
+      <li class="pc-item fade-up">
+        <a class="pc-card pc-tone-predictflow" href="#roi" data-pc-project="predictflow" aria-labelledby="pcTitle4" aria-describedby="pcDesc4">
+          <span class="pc-panel" aria-hidden="true"></span>
+          <span class="pc-glow" aria-hidden="true"></span>
+          <span class="pc-blobs" aria-hidden="true"><span class="pc-blob pc-blob-a"></span><span class="pc-blob pc-blob-b"></span></span>
+          <div class="pc-content">
+            <div class="pc-head">
+              <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+              <p class="pc-eyebrow">PredictFlow · Sahadeva</p>
+            </div>
+            <h3 class="pc-title" id="pcTitle4">Causal demand forecasting</h3>
+            <p class="pc-desc" id="pcDesc4">Forecasts scored in-warehouse on Snowflake or Databricks with native SHAP attribution, so planners can see which drivers moved each number.</p>
+            <ul class="pc-tags" role="list">
+              <li>&lt;45 ms scoring</li>
+              <li>SHAP native</li>
+              <li>85% fewer stockouts</li>
+            </ul>
+            <span class="pc-cta">View project <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      </li>
+
+      <!-- 5 · GuardNet -->
+      <li class="pc-item fade-up fade-up-delay-1">
+        <a class="pc-card pc-tone-guardnet" href="#security" data-pc-project="guardnet" aria-labelledby="pcTitle5" aria-describedby="pcDesc5">
+          <span class="pc-panel" aria-hidden="true"></span>
+          <span class="pc-glow" aria-hidden="true"></span>
+          <span class="pc-blobs" aria-hidden="true"><span class="pc-blob pc-blob-a"></span><span class="pc-blob pc-blob-b"></span></span>
+          <div class="pc-content">
+            <div class="pc-head">
+              <span class="pc-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg></span>
+              <p class="pc-eyebrow">GuardNet · Bheem + Vidura</p>
+            </div>
+            <h3 class="pc-title" id="pcTitle5">Inline agent firewall</h3>
+            <p class="pc-desc" id="pcDesc5">Every copilot query and agent tool call inspected inline before it reaches a model or a system of record, at the edge or in an air-gapped SOC.</p>
+            <ul class="pc-tags" role="list">
+              <li>14 ms inline inspection</li>
+              <li>Edge proxy</li>
+              <li>Air-gapped SOC</li>
+            </ul>
+            <span class="pc-cta">View project <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</section>

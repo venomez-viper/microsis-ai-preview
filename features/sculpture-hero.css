@@ -1,0 +1,476 @@
+/* =====================================================================
+   MicroSIS.ai · Sculpture Hero (vanilla port of liquid-sculpture-hero)
+   Liquid particle sculpture by guglielmogiannattasio.it
+   Scope: every selector is prefixed with .sh- (root: #sculptureHero.sh-root)
+   Theme: follows [data-theme="dark"] on <html> via site tokens.
+   ===================================================================== */
+
+/* The old .hero padding is replaced: the sculpture fills the first screen. */
+.hero.sh-live {
+  padding: 0 0 6rem;
+}
+
+.sh-root {
+  --sh-bg: #EBE9E5;
+  --sh-fg: var(--ink-primary, #1D1D1F);
+  --sh-fg-soft: var(--ink-secondary, #515154);
+  --sh-acc: var(--accent, #0071E3);
+  --sh-line: var(--hairline-strong, rgba(0, 0, 0, 0.14));
+  --sh-head: var(--font-system, -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif);
+  --sh-body: var(--font-system, -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif);
+  --sh-h: max(560px, calc(100svh - 72px));
+  position: relative;
+  width: 100%;
+  min-height: var(--sh-h);
+  overflow: hidden;
+  isolation: isolate;
+  container-type: inline-size;
+  transition: background-color 0.6s ease, color 0.6s ease;
+  background: var(--sh-bg);
+  color: var(--sh-fg);
+  font-family: var(--sh-body);
+  -webkit-font-smoothing: antialiased;
+  touch-action: pan-y;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+}
+
+[data-theme="dark"] .sh-root {
+  --sh-bg: #111110;
+  --sh-fg: var(--ink-primary, #F5F5F7);
+  --sh-fg-soft: var(--ink-secondary, #A1A1A6);
+  --sh-acc: var(--accent, #2997FF);
+  --sh-line: var(--hairline-strong, rgba(255, 255, 255, 0.18));
+}
+
+.sh-root *,
+.sh-root *::before,
+.sh-root *::after {
+  box-sizing: border-box;
+}
+
+/* DataRain (script.js #dataRainHero) kept, very subtle, behind everything */
+.sh-root .sh-datarain {
+  z-index: 0;
+  opacity: 0.1;
+}
+
+[data-theme="dark"] .sh-root .sh-datarain {
+  opacity: 0.16;
+}
+
+.sh-stage {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.sh-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.sh-fallback {
+  position: absolute;
+  left: 50%;
+  top: 38%;
+  width: min(1200px, 100%);
+  height: auto;
+  transform: none;
+  display: block;
+  max-width: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: opacity 0.5s ease;
+  /* the static image has a flat background: soften its edges into the page */
+  -webkit-mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 52%, transparent 100%);
+  mask-image: radial-gradient(ellipse 72% 70% at 50% 50%, #000 52%, transparent 100%);
+  mix-blend-mode: multiply;
+}
+
+[data-theme="dark"] .sh-fallback {
+  mix-blend-mode: lighten;
+}
+
+/* before JS positions it, keep the fallback centred */
+.sh-root:not([data-ready="1"]) .sh-fallback {
+  transform: translate(-50%, -50%);
+}
+
+.sh-root[data-gl="on"] .sh-canvas { opacity: 1; }
+.sh-root[data-gl="on"] .sh-fallback { opacity: 0; }
+.sh-root[data-swap="1"] .sh-canvas { opacity: 0; transition-duration: 0.25s; }
+.sh-root[data-swap="1"] .sh-fallback { opacity: 0; transition-duration: 0.25s; }
+
+.sh-backdrop {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--sh-head);
+  font-weight: 600;
+  font-size: 22cqw;
+  letter-spacing: -0.06em;
+  line-height: 0.8;
+  color: color-mix(in srgb, var(--sh-fg) 5%, transparent);
+}
+
+.sh-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.sh-hint {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 62%;
+  transform: translate(-50%, 0);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--sh-fg-soft);
+  opacity: 0.8;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+.sh-hint::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--sh-acc);
+  animation: sh-pulse 2.4s ease-in-out infinite;
+}
+
+.sh-root[data-touched="1"] .sh-hint,
+.sh-root[data-gl="off"] .sh-hint {
+  opacity: 0;
+}
+
+@keyframes sh-pulse {
+  0%, 100% { transform: scale(0.6); opacity: 0.45; }
+  50% { transform: scale(1); opacity: 1; }
+}
+
+.sh-spacer {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.sh-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr);
+  align-items: end;
+  column-gap: clamp(24px, 4cqw, 72px);
+  row-gap: clamp(20px, 2.4cqw, 32px);
+  padding: 0 clamp(20px, 3.2cqw, 48px) clamp(30px, 3.4cqw, 52px);
+}
+
+/* OpenClaw announcement pill (from the previous hero) */
+.sh-badge {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.65rem;
+  margin: 0 0 clamp(14px, 1.6cqw, 22px);
+  padding: 0.35rem 0.85rem 0.35rem 0.4rem;
+  border-radius: 980px;
+  background: color-mix(in srgb, var(--sh-bg) 72%, transparent);
+  border: 1px solid var(--sh-line);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+.sh-badge-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.18rem 0.55rem;
+  border-radius: 980px;
+  background: var(--sh-fg);
+  color: var(--sh-bg);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.sh-badge-text {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--sh-fg-soft);
+}
+
+.sh-h1 {
+  font-family: var(--sh-head);
+  font-weight: 600;
+  font-size: clamp(40px, min(6.4cqw, 10.5svh), 112px);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.sh-h1 .sh-line {
+  display: block;
+}
+
+.sh-accent {
+  color: var(--sh-acc);
+  letter-spacing: -0.04em;
+}
+
+.sh-aside {
+  max-width: 420px;
+  justify-self: end;
+  padding-bottom: 0.4em;
+}
+
+.sh-body {
+  font-size: clamp(15px, 1.1cqw, 17px);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin: 0 0 24px;
+  color: var(--sh-fg-soft);
+  text-wrap: pretty;
+}
+
+.sh-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 22px;
+}
+
+.sh-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  height: 46px;
+  padding: 0 22px;
+  border-radius: 999px;
+  background: var(--sh-fg);
+  color: var(--sh-bg);
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.2s;
+}
+
+.sh-btn:hover {
+  transform: translateY(-1px);
+  color: var(--sh-bg);
+}
+
+.sh-btn svg,
+.sh-txt svg {
+  transition: transform 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.sh-btn:hover svg,
+.sh-txt:hover svg {
+  transform: translateX(3px);
+}
+
+.sh-txt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: inherit;
+  text-decoration: none;
+  font-size: 14.5px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  padding: 4px 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--sh-fg) 30%, transparent);
+}
+
+.sh-txt:hover {
+  color: var(--sh-acc);
+  border-bottom-color: currentColor;
+}
+
+/* Compliance strip (from the previous hero) */
+.sh-proof {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.5rem;
+  padding-top: clamp(14px, 1.6cqw, 20px);
+  border-top: 1px solid var(--sh-line);
+}
+
+.sh-proof-title {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: var(--sh-fg-soft);
+}
+
+.sh-proof-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sh-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.36rem 0.85rem;
+  border-radius: 980px;
+  border: 1px solid var(--sh-line);
+  background: color-mix(in srgb, var(--sh-bg) 70%, transparent);
+  color: var(--sh-fg-soft);
+  font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: border-color 150ms ease, color 150ms ease;
+}
+
+.sh-chip:hover {
+  border-color: var(--sh-acc);
+  color: var(--sh-fg);
+}
+
+.sh-root a:focus-visible {
+  outline: 2px solid var(--sh-acc);
+  outline-offset: 4px;
+}
+
+.sh-credit {
+  position: absolute;
+  z-index: 2;
+  right: clamp(20px, 3.2cqw, 48px);
+  bottom: 8px;
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--sh-fg-soft);
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.sh-credit:hover {
+  opacity: 1;
+}
+
+/* Fluid capability stage, kept below the sculpture */
+.sh-live-follow {
+  position: relative;
+  z-index: 2;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+@container (max-width: 1023px) {
+  .sh-content {
+    grid-template-columns: 1fr;
+    row-gap: 24px;
+  }
+  .sh-aside {
+    justify-self: start;
+    max-width: 560px;
+    padding-bottom: 0;
+  }
+  .sh-h1 {
+    font-size: clamp(40px, min(9.5cqw, 8.5svh), 92px);
+  }
+}
+
+@container (max-width: 639px) {
+  .sh-h1 {
+    font-size: clamp(32px, min(11.5cqw, 6.8svh), 54px);
+    line-height: 0.98;
+  }
+  .sh-body {
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+  .sh-badge-text {
+    font-size: 0.72rem;
+  }
+  .sh-ctas {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .sh-btn {
+    height: 46px;
+  }
+  .sh-proof-title {
+    display: none;
+  }
+  .sh-content {
+    padding-bottom: 40px;
+  }
+  .sh-credit {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 480px) {
+  .sh-ctas {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .sh-btn {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sh-hint::before {
+    animation: none;
+  }
+  .sh-root,
+  .sh-canvas,
+  .sh-fallback,
+  .sh-btn,
+  .sh-btn svg,
+  .sh-txt svg {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .sh-badge {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--sh-bg);
+  }
+}

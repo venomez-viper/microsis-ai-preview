@@ -1,0 +1,33 @@
+<!--
+  MicroSIS.ai glass logo reveal: brand intro splash.
+  WHERE: paste this block in public/index.html IMMEDIATELY AFTER the opening <body> tag
+         (before the "Translucent Floating Navigation" header). It replaces nothing.
+  ALSO ADD:
+    in <head>, after /styles.css:   <link rel="stylesheet" href="/features/glass-logo-reveal.css">
+    before </body> (or in <head>):  <script src="/features/glass-logo-reveal.js" defer></script>
+  OPTIONAL replay on logo double-click (script.js):
+    document.querySelector('.nav-logo')?.addEventListener('dblclick', (e) => {
+      e.preventDefault(); window.MicroSISGlassReveal && window.MicroSISGlassReveal.replay();
+    });
+  Plays once per browser session (sessionStorage "microsis_glass_splash_seen"). Skippable by click,
+  Escape or the Skip button. Skipped under prefers-reduced-motion, removed at once without WebGL2.
+-->
+<div id="glassLogoSplash" class="gls-splash" role="region" aria-label="MicroSIS.ai intro">
+  <div class="gls-stage" aria-hidden="true"></div>
+  <p class="gls-wordmark" aria-hidden="true">MicroSIS<span class="gls-ai">.ai</span></p>
+  <button type="button" class="gls-skip">Skip intro</button>
+</div>
+<script>
+  /* Runs before first paint: match the saved theme and drop the splash early when it should not play. */
+  (function () {
+    var r = document.getElementById('glassLogoSplash');
+    if (!r) return;
+    var saved = null, seen = null;
+    try { saved = localStorage.getItem('microsis_appearance'); } catch (e) {}
+    try { seen = sessionStorage.getItem('microsis_glass_splash_seen'); } catch (e) {}
+    r.setAttribute('data-look', saved === 'dark' ? 'dark' : 'light');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (seen === '1' || reduce) { r.hidden = true; r.setAttribute('aria-hidden', 'true'); }
+  })();
+</script>
+<noscript><style>.gls-splash { display: none !important; }</style></noscript>

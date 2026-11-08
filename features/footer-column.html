@@ -1,0 +1,104 @@
+<!--
+  footer-column · MicroSIS.ai Footer4Col (live-site port)
+  WHERE: inside public/index.html, <footer class="footer mrf-live-footer" id="mrfFooter">,
+  within <div class="container mrf-live-content">.
+  REPLACES: the <div class="footer-grid"> block AND the <div class="footer-bottom"> block
+  (currently lines ~1247 to ~1291, from `<div class="footer-grid">` down to the closing
+  `</div>` of `.footer-bottom`). Keep everything else: the Meadow Rise canvas/hero/CTA,
+  the botany SVG, and the `.footer-newsletter` block (newsletterEmail / newsletterBtn) stay as-is.
+  ASSETS: <link rel="stylesheet" href="/features/footer-column.css"> in <head>,
+          <script src="/features/footer-column.js" defer></script> before </body>.
+  NOTE: Capabilities links keep data-product="..." so the existing initFooterProductLinks()
+  in script.js still opens the product sheet (it matches [data-product] inside .footer).
+-->
+<div class="fc4-root" id="fc4Footer">
+  <div class="fc4-top">
+    <div class="fc4-brand">
+      <a href="#" class="fc4-logo-link" aria-label="MicroSIS.ai home">
+        <img src="/logo/microsis-logo-final.svg" alt="MicroSIS.ai" width="192" height="48" loading="lazy" class="fc4-logo logo-for-light">
+        <img src="/logo/microsis-logo-white.svg" alt="MicroSIS.ai" width="192" height="48" loading="lazy" class="fc4-logo logo-for-dark">
+      </a>
+      <p class="fc4-desc">Applied intelligence infrastructure for regulated institutions. Engineered for determinism, provenance, and sovereignty.</p>
+      <ul class="fc4-social" aria-label="MicroSIS.ai on social platforms">
+        <li>
+          <a href="https://github.com/MicroSIS-LLC" class="fc4-link fc4-social-link" target="_blank" rel="noopener noreferrer">
+            <span class="fc4-sr">GitHub</span>
+            <svg class="fc4-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="fc4-link fc4-social-link">
+            <span class="fc4-sr">LinkedIn</span>
+            <svg class="fc4-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <nav class="fc4-cols" aria-label="Footer">
+      <div class="fc4-col">
+        <h3 class="fc4-heading">Capabilities</h3>
+        <ul class="fc4-list">
+          <li><a href="#products" class="fc4-link" data-product="docmind">DocMind</a></li>
+          <li><a href="#products" class="fc4-link" data-product="voiceforge">VoiceForge</a></li>
+          <li><a href="#products" class="fc4-link" data-product="complianceai">ComplianceAI</a></li>
+          <li><a href="#products" class="fc4-link" data-product="predictflow">PredictFlow</a></li>
+          <li><a href="#products" class="fc4-link" data-product="guardnet">GuardNet</a></li>
+        </ul>
+      </div>
+
+      <div class="fc4-col">
+        <h3 class="fc4-heading">Platform</h3>
+        <ul class="fc4-list">
+          <li><a href="#finder" class="fc4-link">Solution Finder</a></li>
+          <li><a href="#xray" class="fc4-link">Coordinate X-Ray</a></li>
+          <li><a href="#playground" class="fc4-link">Interactive Workbench</a></li>
+          <li><a href="#architecture" class="fc4-link">OpenClaw Architecture</a></li>
+          <li><a href="#roi" class="fc4-link">Impact Estimator</a></li>
+        </ul>
+      </div>
+
+      <div class="fc4-col">
+        <h3 class="fc4-heading">Organization</h3>
+        <ul class="fc4-list">
+          <li><a href="#about" class="fc4-link">About MicroSIS</a></li>
+          <li>
+            <a href="#demo" class="fc4-link fc4-link-live">
+              <span>Schedule Briefing</span>
+              <span class="fc4-ping" aria-hidden="true"><span class="fc4-ping-wave"></span><span class="fc4-ping-dot"></span></span>
+            </a>
+          </li>
+          <li><a href="#contact" class="fc4-link">Direct Inquiry</a></li>
+          <li><a href="#security" class="fc4-link">Security &amp; BAA</a></li>
+        </ul>
+      </div>
+
+      <div class="fc4-col">
+        <h3 class="fc4-heading">Contact</h3>
+        <ul class="fc4-list">
+          <li>
+            <a href="mailto:engineering@microsis.ai" class="fc4-link fc4-contact">
+              <svg class="fc4-icon fc4-icon-accent" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+              <span>engineering@microsis.ai</span>
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/MicroSIS-LLC" class="fc4-link fc4-contact" target="_blank" rel="noopener noreferrer">
+              <svg class="fc4-icon fc4-icon-accent" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+              <span>github.com/MicroSIS-LLC</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="fc4-bottom">
+    <p class="fc4-copy">&copy; <span id="fc4Year">2026</span> MicroSIS LLC. All rights reserved.</p>
+    <ul class="fc4-legal">
+      <li><a href="#security" class="fc4-link">Privacy</a></li>
+      <li><a href="#security" class="fc4-link">Terms</a></li>
+      <li><a href="#security" class="fc4-link">Security &amp; BAA</a></li>
+    </ul>
+  </div>
+</div>

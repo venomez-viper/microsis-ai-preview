@@ -1,0 +1,700 @@
+/* ============================================
+   MicroSIS.ai · Projects Showcase (#projects)
+   Vanilla port of components/ui/gradient-card-showcase.tsx (SkewCards).
+   Every selector is scoped with the pc- prefix.
+   Skewed gradient panel + blurred glow behind a glass card. Hover and
+   keyboard focus unskew the panel, float two glass blobs in and shift the
+   card. Touch devices get a lighter resting version of the hovered state.
+   ============================================ */
+
+.pc-section {
+  --pc-glass: rgba(255, 255, 255, 0.80);
+  --pc-glass-solid: rgba(255, 255, 255, 0.94);
+  --pc-border: rgba(0, 0, 0, 0.06);
+  --pc-rim: rgba(255, 255, 255, 0.90);
+  --pc-ink: #1D1D1F;
+  --pc-ink-2: #3A3A3C;
+  --pc-eyebrow: #0058B0;
+  --pc-tag-bg: rgba(0, 0, 0, 0.05);
+  --pc-tag-ink: #3A3A3C;
+  --pc-pill-bg: #1D1D1F;
+  --pc-pill-ink: #FFFFFF;
+  --pc-pill-bg-hover: #000000;
+  --pc-focus: #0066CC;
+  --pc-blob-bg: rgba(255, 255, 255, 0.35);
+  --pc-blob-rim: rgba(255, 255, 255, 0.45);
+  --pc-glow: 0.45;
+  --pc-shadow: 0 12px 36px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+  --pc-radius: 18px;
+  --pc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --pc-dur: 500ms;
+  overflow-x: clip;
+}
+
+[data-theme="dark"] .pc-section {
+  --pc-glass: rgba(22, 22, 24, 0.80);
+  --pc-glass-solid: rgba(22, 22, 24, 0.95);
+  --pc-border: rgba(255, 255, 255, 0.10);
+  --pc-rim: rgba(255, 255, 255, 0.10);
+  --pc-ink: #F5F5F7;
+  --pc-ink-2: #C7C7CC;
+  --pc-eyebrow: #69B4FF;
+  --pc-tag-bg: rgba(255, 255, 255, 0.08);
+  --pc-tag-ink: #D1D1D6;
+  --pc-pill-bg: #F5F5F7;
+  --pc-pill-ink: #1D1D1F;
+  --pc-pill-bg-hover: #FFFFFF;
+  --pc-focus: #2997FF;
+  --pc-blob-bg: rgba(255, 255, 255, 0.10);
+  --pc-blob-rim: rgba(255, 255, 255, 0.18);
+  --pc-glow: 0.55;
+  --pc-shadow: 0 16px 44px rgba(0, 0, 0, 0.55);
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .pc-section { --pc-glass: var(--pc-glass-solid); }
+}
+
+/* ---------- Per-project tones (restrained Apple palette) ---------- */
+.pc-tone-docmind      { --pc-from: #E11D48; --pc-to: #7C3AED; --pc-accent: #E11D48; }
+.pc-tone-voiceforge   { --pc-from: #0071E3; --pc-to: #00C6FF; --pc-accent: #0071E3; }
+.pc-tone-compliance,
+.pc-tone-complianceai { --pc-from: #5856D6; --pc-to: #AF52DE; --pc-accent: #6366F1; }
+.pc-tone-predictflow  { --pc-from: #10B981; --pc-to: #0EA5E9; --pc-accent: #10B981; }
+.pc-tone-guardnet     { --pc-from: #F97316; --pc-to: #EF4444; --pc-accent: #F97316; }
+
+/* ---------- Grid: 1 col mobile, 2 md, 3 xl, last row centred ---------- */
+.pc-grid,
+.products-grid.pc-grid {
+  list-style: none;
+  margin: 0 0 3rem;
+  padding: 1.75rem 0 1rem;
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 3.5rem 2.75rem;
+}
+
+.pc-item {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+}
+
+@media (min-width: 768px) {
+  .pc-item { width: calc((100% - 2.75rem) / 2); }
+}
+
+@media (min-width: 1180px) {
+  .pc-item { width: calc((100% - 5.5rem) / 3); }
+}
+
+/* ---------- Card (the whole card is interactive) ---------- */
+.pc-card,
+.product-card.pc-card {
+  position: relative;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  min-height: 460px;
+  border-radius: var(--pc-radius);
+  color: var(--pc-ink);
+  text-decoration: none;
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.pc-section .pc-card:hover,
+.pc-section .pc-card:focus,
+.pc-section .pc-card:active {
+  color: var(--pc-ink);
+  text-decoration: none;
+}
+
+.pc-card:focus { outline: none; }
+
+.pc-card:focus-visible {
+  outline: 2px solid var(--pc-focus);
+  outline-offset: 6px;
+}
+
+/* ---------- Skewed gradient panel + blurred glow ---------- */
+.pc-panel,
+.pc-glow {
+  position: absolute;
+  top: 0;
+  left: 50px;
+  width: 50%;
+  height: 100%;
+  border-radius: var(--pc-radius);
+  background: linear-gradient(315deg, var(--pc-from, #0071E3), var(--pc-to, #5856D6));
+  transform: skewX(15deg);
+  transition: left var(--pc-dur) var(--pc-ease),
+              width var(--pc-dur) var(--pc-ease),
+              transform var(--pc-dur) var(--pc-ease);
+  pointer-events: none;
+}
+
+.pc-glow {
+  filter: blur(30px);
+  opacity: var(--pc-glow);
+}
+
+/* ---------- Floating glass blobs ---------- */
+.pc-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pc-blob {
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-radius: var(--pc-radius);
+  opacity: 0;
+  background: var(--pc-blob-bg);
+  border: 1px solid var(--pc-blob-rim);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  animation: pc-blob 2s ease-in-out infinite;
+  transition-property: top, left, right, bottom, width, height, opacity;
+  transition-timing-function: var(--pc-ease);
+}
+
+.pc-blob-a {
+  top: 0;
+  left: 0;
+  transition-duration: 100ms;
+}
+
+.pc-blob-b {
+  right: 0;
+  bottom: 0;
+  animation-delay: -1s;
+  transition-duration: var(--pc-dur);
+}
+
+@keyframes pc-blob {
+  0%, 100% { transform: translateY(10px); }
+  50% { transform: translate(-10px); }
+}
+
+.pc-section.pc-paused .pc-blob { animation-play-state: paused; }
+
+/* ---------- Glass content card ---------- */
+.pc-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 28px 30px;
+  border-radius: var(--pc-radius);
+  background: var(--pc-glass);
+  border: 1px solid var(--pc-border);
+  box-shadow: var(--pc-shadow), inset 0 1px 0 var(--pc-rim);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  backdrop-filter: blur(20px) saturate(150%);
+  transform: translateX(0);
+  transition: transform var(--pc-dur) var(--pc-ease),
+              padding var(--pc-dur) var(--pc-ease);
+}
+
+.pc-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.pc-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: #FFFFFF;
+  background: linear-gradient(315deg, var(--pc-from, #0071E3), var(--pc-to, #5856D6));
+  box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.pc-icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+.pc-eyebrow {
+  margin: 0;
+  font-size: 0.72rem;
+  font-weight: 650;
+  line-height: 1.25;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pc-eyebrow);
+  flex: 1;
+}
+
+.pc-price-pill {
+  flex-shrink: 0;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--pc-ink-2);
+  background: var(--pc-tag-bg);
+  border: 1px solid var(--pc-border);
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-price-pill strong {
+  color: var(--pc-ink);
+  font-weight: 700;
+}
+
+.pc-section .pc-title {
+  margin: 0 0 0.3rem;
+  font-size: 1.375rem;
+  font-weight: 650;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+  color: var(--pc-ink);
+}
+
+.pc-tagline {
+  margin: 0 0 0.65rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.35;
+  background: linear-gradient(135deg, var(--pc-from, #0071E3), var(--pc-to, #5856D6));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pc-desc {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  line-height: 1.52;
+  letter-spacing: -0.003em;
+  color: var(--pc-ink-2);
+}
+
+.pc-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+  padding: 0.75rem 0;
+  margin: 0 0 0.9rem;
+  border-top: 1px solid var(--pc-border);
+  border-bottom: 1px solid var(--pc-border);
+}
+
+.pc-metrics-strip .pm-val {
+  display: block;
+  font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--pc-ink);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.pc-metrics-strip .pm-lbl {
+  display: block;
+  font-size: 0.68rem;
+  color: var(--pc-ink-2);
+  line-height: 1.25;
+  margin-top: 2px;
+}
+
+.pc-tags {
+  list-style: none;
+  margin: 0 0 1.15rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pc-tags li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--pc-tag-bg);
+  color: var(--pc-tag-ink);
+  font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 0.72rem;
+  line-height: 1.35;
+  font-variant-numeric: tabular-nums;
+}
+
+.pc-actions-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-top: auto;
+  padding-top: 0.25rem;
+}
+
+.pc-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: var(--pc-pill-bg);
+  color: var(--pc-pill-ink) !important;
+  font-size: 0.84rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none !important;
+  white-space: nowrap;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.pc-cta svg {
+  width: 15px;
+  height: 15px;
+  transition: transform 220ms var(--pc-ease);
+}
+
+.pc-wb-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: var(--pc-tag-bg);
+  border: 1px solid var(--pc-border);
+  color: var(--pc-ink);
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.pc-wb-btn:hover {
+  border-color: var(--pc-eyebrow);
+}
+
+/* ---------- Product Suite Architectural Stats Bento & 3D Glass Folder Shelf ---------- */
+.ps-stats-bento {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 0 0 3.5rem;
+}
+
+.ps-stat-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem 1.5rem;
+  border-radius: 16px;
+  background: var(--pc-glass);
+  border: 1px solid var(--pc-border);
+  box-shadow: var(--pc-shadow), inset 0 1px 0 var(--pc-rim);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  backdrop-filter: blur(16px) saturate(140%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.ps-stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--pc-eyebrow), transparent);
+  opacity: 0.65;
+}
+
+.ps-stat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFFFFF;
+  background: linear-gradient(135deg, #0071E3, #5856D6);
+  box-shadow: 0 4px 12px -2px rgba(0, 113, 227, 0.35);
+}
+
+.ps-stat-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ps-stat-num {
+  font-size: 1.65rem;
+  font-weight: 760;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--pc-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.ps-stat-lbl {
+  font-family: var(--font-mono, ui-monospace, "SF Mono", Menlo, monospace);
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--pc-ink-2);
+}
+
+@media (max-width: 960px) {
+  .ps-stats-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 540px) {
+  .ps-stats-bento {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Interactive 3D Glass Folder Dossier Showcase inside Product Suite */
+.gf-suite-showcase {
+  margin-top: 3.5rem;
+  padding: 2.5rem 2rem 3rem;
+  border-radius: 22px;
+  border: 1px dashed var(--hairline-strong, rgba(128, 128, 138, 0.28));
+  background: var(--surface-card, rgba(255, 255, 255, 0.6));
+  background-image: radial-gradient(var(--hairline-strong, rgba(128, 128, 138, 0.22)) 1px, transparent 1.2px);
+  background-size: 22px 22px;
+  box-shadow: var(--shadow-card);
+}
+
+.gf-suite-top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+.gf-suite-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.gf-suite-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 2.75rem 2.25rem;
+}
+
+canvas.gf-art,
+canvas.gf-sheet-art {
+  opacity: 0;
+  filter: blur(12px) saturate(0.7);
+  transition: opacity 0.9s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.9s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+canvas.gf-art[data-ready],
+canvas.gf-sheet-art[data-ready] {
+  opacity: 1;
+  filter: none;
+}
+
+.gf-sheet-art {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 272px;
+  height: 184px;
+  max-width: none;
+  object-fit: cover;
+}
+
+.gf-sheet--art::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.48) 0%, rgba(0, 0, 0, 0.05) 42%);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+  pointer-events: none;
+}
+
+/* ---------- Active state: hover (pointer devices) + keyboard focus ---------- */
+@media (hover: hover) {
+  .pc-card:hover .pc-panel,
+  .pc-card:hover .pc-glow,
+  .pc-card:focus-within .pc-panel,
+  .pc-card:focus-within .pc-glow {
+    left: 20px;
+    width: calc(100% - 90px);
+    transform: skewX(0deg);
+  }
+
+  .pc-card:hover .pc-blob,
+  .pc-card:focus-within .pc-blob {
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+  }
+
+  .pc-card:hover .pc-blob-a,
+  .pc-card:focus-within .pc-blob-a {
+    top: -50px;
+    left: 50px;
+  }
+
+  .pc-card:hover .pc-blob-b,
+  .pc-card:focus-within .pc-blob-b {
+    right: 50px;
+    bottom: -50px;
+  }
+
+  .pc-card:hover .pc-content,
+  .pc-card:focus-within .pc-content {
+    transform: translateX(-25px);
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  .pc-card:hover .pc-cta {
+    background: var(--pc-pill-bg-hover);
+  }
+
+  .pc-card:hover .pc-cta svg {
+    transform: translateX(3px);
+  }
+}
+
+/* Keyboard focus always gets the full state, on any device. */
+.pc-card:focus-visible .pc-panel,
+.pc-card:focus-visible .pc-glow {
+  left: 20px;
+  width: calc(100% - 90px);
+  transform: skewX(0deg);
+}
+
+.pc-card:focus-visible .pc-content {
+  transform: translateX(-25px);
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+/* ---------- Touch: lighter resting version of the hovered state ---------- */
+@media (hover: none) {
+  .pc-panel,
+  .pc-glow {
+    left: 20px;
+    width: calc(100% - 90px);
+    transform: skewX(0deg);
+  }
+
+  .pc-blobs { display: none; }
+}
+
+.pc-section.pc-touch .pc-panel,
+.pc-section.pc-touch .pc-glow {
+  left: 20px;
+  width: calc(100% - 90px);
+  transform: skewX(0deg);
+}
+
+.pc-section.pc-touch .pc-blobs { display: none; }
+
+.pc-section.pc-touch .pc-content,
+.pc-section.pc-touch .pc-card:focus-visible .pc-content {
+  transform: none;
+  padding-top: 28px;
+  padding-bottom: 28px;
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 560px) {
+  .pc-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+  .pc-card {
+    min-height: auto;
+  }
+  .pc-content {
+    padding: 22px 20px;
+  }
+  .pc-section .pc-title {
+    font-size: 1.25rem;
+  }
+  .pc-head {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .pc-actions-row {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .pc-metrics-strip {
+    grid-template-columns: 1fr;
+    gap: 0.45rem;
+  }
+  .pc-actions-row .pc-cta,
+  .pc-actions-row .pc-secondary-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .pc-panel,
+  .pc-glow,
+  .pc-content,
+  .pc-cta,
+  .pc-cta svg {
+    transition: none !important;
+  }
+
+  .pc-blobs { display: none; }
+
+  .pc-blob { animation: none !important; }
+}
+
+/* ---------- Forced colours (Windows High Contrast) ---------- */
+@media (forced-colors: active) {
+  .pc-content {
+    border: 1px solid CanvasText;
+    background: Canvas;
+  }
+
+  .pc-panel,
+  .pc-glow,
+  .pc-blobs { display: none; }
+
+  .pc-cta {
+    border: 1px solid ButtonText;
+  }
+}

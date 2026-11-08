@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="2 10 100 100" width="100" height="100">
+  <defs>
+    <linearGradient id="mk1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0071E3"/><stop offset="100%" stop-color="#00C6FF"/></linearGradient>
+    <linearGradient id="mk2" x1="100%" y1="0%" x2="0%" y2="100%"><stop offset="0%" stop-color="#5856D6"/><stop offset="100%" stop-color="#0071E3"/></linearGradient>
+    <linearGradient id="mk3" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#00C6FF"/><stop offset="100%" stop-color="#34C759"/></linearGradient>
+  </defs>
+  <g transform="translate(52,60)">
+    <ellipse rx="40" ry="14.5" fill="none" stroke="url(#mk1)" stroke-width="3.2" opacity="0.9" transform="rotate(-30)"/>
+    <ellipse rx="40" ry="14.5" fill="none" stroke="url(#mk2)" stroke-width="3.2" opacity="0.9" transform="rotate(30)"/>
+    <ellipse rx="40" ry="14.5" fill="none" stroke="url(#mk3)" stroke-width="3.2" opacity="0.9" transform="rotate(90)"/>
+    <circle cy="-40" r="7.5" fill="#0071E3"/>
+    <circle cx="-34.5" cy="20" r="7.5" fill="#5856D6"/>
+    <circle cx="34.5" cy="20" r="7.5" fill="#00C6FF"/>
+    <circle r="8" fill="url(#mk1)" opacity="0.35"/>
+    <circle r="4.2" fill="url(#mk1)"/>
+  </g>
+</svg>

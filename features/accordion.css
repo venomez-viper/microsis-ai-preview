@@ -1,0 +1,83 @@
+/* ==========================================================================
+   MicroSIS.ai · Accordion (vanilla port of components/ui/accordion.tsx)
+   Item: border-b · Trigger: flex justify-between py-4 font-semibold hover:underline,
+   chevron opacity-60 rotates 180° when open · Content: overflow-hidden text-sm,
+   accordion-down / accordion-up 0.2s ease-out on --radix-accordion-content-height.
+   ========================================================================== */
+
+.acc-root {
+  display: block;
+  width: 100%;
+  max-width: 820px;
+}
+
+/* override the legacy stacked-card FAQ layout */
+.faq-list.acc-root { display: block; gap: 0; }
+
+.acc-item {
+  border-bottom: 1px solid var(--hairline-strong, rgba(0, 0, 0, 0.12));
+}
+
+.acc-header {
+  display: flex;
+  margin: 0;
+  font: inherit;
+}
+
+.acc-trigger {
+  display: flex;
+  flex: 1 1 0%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  border: 0;
+  background: none;
+  text-align: left;
+  font-family: var(--font-system, inherit);
+  font-size: 0.96875rem;
+  font-weight: 600;
+  color: var(--ink-primary);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.acc-trigger:hover { text-decoration: underline; text-underline-offset: 3px; }
+.acc-trigger:focus-visible { outline: 2px solid var(--accent, #0071e3); outline-offset: 2px; border-radius: 4px; }
+
+.acc-chevron {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+  transition: transform 200ms ease;
+}
+
+.acc-trigger[data-state="open"] > .acc-chevron { transform: rotate(180deg); }
+
+.acc-content {
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--ink-secondary);
+}
+
+.acc-content[data-state="open"] { animation: accordion-down 0.2s ease-out; }
+.acc-content[data-state="closed"] { animation: accordion-up 0.2s ease-out; }
+
+.acc-inner { padding: 0 0 1rem; }
+
+@keyframes accordion-down {
+  from { height: 0; }
+  to { height: var(--radix-accordion-content-height); }
+}
+
+@keyframes accordion-up {
+  from { height: var(--radix-accordion-content-height); }
+  to { height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .acc-content[data-state] { animation: none; }
+  .acc-chevron { transition: none; }
+}

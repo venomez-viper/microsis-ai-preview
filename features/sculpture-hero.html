@@ -1,0 +1,135 @@
+<!--
+  SCULPTURE HERO · liquid particle sculpture (vanilla port of components/ui/liquid-sculpture-hero.tsx)
+
+  WHERE: full drop-in replacement for the existing
+         <section class="hero" id="home"> ... </section>
+         in public/index.html (the "HERO & FLUID INTERACTIVE STAGE" comment plus the section,
+         at the time of writing lines 130-220), directly inside <main id="mainContent">, before #finder.
+
+  ALSO ADD (coordinator):
+    <head>, after /styles.css:      <link rel="stylesheet" href="/features/sculpture-hero.css">
+    end of <body>, after script.js: <script src="/features/sculpture-hero.js" defer></script>
+
+  PRESERVED for script.js: id="home", #dataRainHero (.dr-bloom-canvas / .dr-main-canvas),
+  and the whole Fluid Direct-Manipulation Stage with #fluidStageShell, #heroSegmentedControl,
+  #heroSegmentedPill, #fluidTrackViewport, #fluidTrack, #stagePrevBtn, #stageNextBtn,
+  #stageMetaNode, #stageMetaLatency, #stageMetaStandard, #stageInspectLink (moved below the sculpture).
+
+  The hero renders no nav and no theme button: the site header (#nimbusHeaderNav, #themeToggle)
+  owns both. sculpture-hero.js follows [data-theme] on <html>.
+  Images: CORS-enabled cdn.21st.dev assets made for this effect. Override with
+  data-src / data-dark-src / data-mobile-src / data-mobile-dark-src (+ data-image-background
+  for flat-background images) on #sculptureHero.
+-->
+    <!-- ======== HERO · LIQUID SCULPTURE & FLUID INTERACTIVE STAGE ======== -->
+    <section class="hero sh-live" id="home" aria-labelledby="shHeadline">
+      <div class="sh-root" id="sculptureHero">
+        <div class="dr-ambient-bg sh-datarain" id="dataRainHero" aria-hidden="true">
+          <canvas class="dr-bloom-canvas"></canvas>
+          <canvas class="dr-main-canvas"></canvas>
+        </div>
+
+        <div class="sh-backdrop" aria-hidden="true">microsis</div>
+
+        <div class="sh-stage" aria-hidden="true">
+          <img class="sh-fallback" src="https://cdn.21st.dev/assets/mirror/ae/ae8c3de9003460e59182e950ccd345f68f27f9d0e4808b64c92c962a4eca7120.webp" alt="" width="1983" height="793" crossorigin="anonymous" decoding="async" fetchpriority="high" draggable="false">
+        </div>
+        <span class="sh-sr">Abstract sculpture of interwoven metallic filaments and particles that turns liquid under the cursor</span>
+
+        <div class="sh-hint" aria-hidden="true" data-hint="Move across the form" data-hint-touch="Touch the form">Move across the form</div>
+
+        <div class="sh-spacer"></div>
+
+        <div class="sh-content">
+          <div class="sh-main">
+            <p class="sh-badge fade-up">
+              <span class="sh-badge-pill">OpenClaw v4.2</span>
+              <span class="sh-badge-text">Deterministic 7-Agent Consensus · SOC 2 Type II &amp; HIPAA BAA</span>
+            </p>
+            <h1 class="sh-h1 fade-up fade-up-delay-1" id="shHeadline">
+              <span class="sh-line">Intelligence</span>
+              <span class="sh-line">you can <span class="sh-accent">audit.</span></span>
+            </h1>
+          </div>
+
+          <div class="sh-aside fade-up fade-up-delay-2">
+            <p class="sh-body">MicroSIS.ai engineers deterministic AI systems for regulated organizations: five specialized engines for document comprehension, low-latency speech, continuous compliance, causal forecasting and runtime security, under a single verifiable architecture.</p>
+            <div class="sh-ctas">
+              <a href="#demo" class="sh-btn pressable">
+                <span>Schedule a briefing</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+              <a href="#products" class="sh-txt">
+                <span>Explore capabilities</span>
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M2 7h10M8 3l4 4-4 4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="sh-proof fade-up fade-up-delay-3">
+            <p class="sh-proof-title" id="shProofTitle">Deployed across regulated financial, clinical, and sovereign cloud enclaves</p>
+            <ul class="sh-proof-list" aria-labelledby="shProofTitle">
+              <li><a href="#security" class="sh-chip">SOC 2 Type II</a></li>
+              <li><a href="#security" class="sh-chip">HIPAA BAA</a></li>
+              <li><a href="#security" class="sh-chip">ISO/IEC 42001</a></li>
+              <li><a href="#security" class="sh-chip">FedRAMP High Ready</a></li>
+              <li><a href="#security" class="sh-chip">Zero Data Egress</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <a class="sh-credit" href="https://guglielmogiannattasio.it" target="_blank" rel="noopener">by guglielmogiannattasio.it</a>
+      </div>
+
+      <div class="container hero-z sh-live-follow">
+        <!-- Fluid Direct-Manipulation Stage -->
+        <div class="fluid-stage-shell fade-up" id="fluidStageShell">
+          <div class="fluid-stage-topbar">
+            <!-- Spring-Driven Segmented Control -->
+            <div class="segmented-control" id="heroSegmentedControl" role="tablist" aria-label="Capability Stage">
+              <div class="segmented-pill" id="heroSegmentedPill"></div>
+              <button class="segmented-btn active" role="tab" aria-selected="true" data-index="0" data-slug="docmind">DocMind</button>
+              <button class="segmented-btn" role="tab" aria-selected="false" data-index="1" data-slug="voiceforge">VoiceForge</button>
+              <button class="segmented-btn" role="tab" aria-selected="false" data-index="2" data-slug="complianceai">ComplianceAI</button>
+              <button class="segmented-btn" role="tab" aria-selected="false" data-index="3" data-slug="predictflow">PredictFlow</button>
+              <button class="segmented-btn" role="tab" aria-selected="false" data-index="4" data-slug="guardnet">GuardNet</button>
+            </div>
+
+            <div class="stage-gesture-hint">
+              <span>Drag stage or select capability</span>
+              <div class="stage-nav-arrows">
+                <button class="stage-arrow pressable" id="stagePrevBtn" aria-label="Previous capability">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="stage-arrow pressable" id="stageNextBtn" aria-label="Next capability">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- 1:1 Pointer-Tracked Momentum Track -->
+          <div class="fluid-track-viewport" id="fluidTrackViewport">
+            <div class="fluid-track" id="fluidTrack">
+              <!-- Populated by script.js with 5 interactive capability slides -->
+            </div>
+          </div>
+
+          <div class="fluid-stage-footer">
+            <div class="stage-meta-item">
+              <span class="meta-label">Orchestration Node</span>
+              <span class="meta-value" id="stageMetaNode">Arjuna · Document Precision</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Measured Latency</span>
+              <span class="meta-value" id="stageMetaLatency">284 ms / page</span>
+            </div>
+            <div class="stage-meta-item">
+              <span class="meta-label">Verification Standard</span>
+              <span class="meta-value" id="stageMetaStandard">Coordinate Provenance · SHA-256</span>
+            </div>
+            <a href="#playground" class="stage-footer-link" id="stageInspectLink">Evaluate in Workbench →</a>
+          </div>
+        </div>
+      </div>
+    </section>

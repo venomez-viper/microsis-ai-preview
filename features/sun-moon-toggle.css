@@ -1,0 +1,77 @@
+/* ==========================================================================
+   MicroSIS.ai — Sun & Moon Celestial Dome Theme Toggle (sun-moon-theme-toggle.tsx)
+   ========================================================================== */
+
+.sun-moon-toggle {
+  position: relative !important;
+  isolation: isolate;
+  display: inline-flex !important;
+  flex-shrink: 0;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden !important;
+  border-radius: 9999px !important;
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0 !important;
+  border: 1px solid rgba(148, 163, 184, 0.35) !important;
+  background: transparent !important;
+  transition: filter 0.2s ease, border-color 0.2s ease, transform 0.15s ease !important;
+  box-shadow: 0 2px 10px rgba(9, 15, 42, 0.18);
+}
+
+.sun-moon-toggle:hover {
+  filter: brightness(1.1);
+}
+
+.sun-moon-toggle:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px var(--canvas, #fff), 0 0 0 4px var(--accent, #0066CC);
+}
+
+.smt-sky {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.smt-sky-night {
+  background: linear-gradient(180deg, #090f2a 0%, #16204b 60%, #2a2f66 100%);
+}
+
+.smt-sky-day {
+  background: linear-gradient(180deg, #4ea8ff 0%, #9fd3ff 60%, #e3f3ff 100%);
+}
+
+.smt-star {
+  position: absolute;
+  border-radius: 9999px;
+  background-color: #ffffff;
+}
+
+.smt-body {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.smt-body svg {
+  width: 50%;
+  height: 50%;
+  display: block;
+}
+
+.smt-body-moon {
+  color: #fde68a;
+  filter: drop-shadow(0 0 8px rgba(252, 211, 77, 0.6));
+}
+
+.smt-body-sun {
+  color: #fb923c;
+  filter: drop-shadow(0 0 10px rgba(251, 146, 60, 0.7));
+}

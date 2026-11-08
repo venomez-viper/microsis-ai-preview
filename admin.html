@@ -3,85 +3,130 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MicroSIS Admin Dashboard</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>MicroSIS | Administrative Console</title>
+  <link rel="icon" href="/logo/microsis-icon.svg" type="image/svg+xml">
   <style>
+    :root {
+      --font-system: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+      --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+      --canvas: #FBFBFD;
+      --surface-alt: #F5F5F7;
+      --surface-card: #FFFFFF;
+      --ink-primary: #1D1D1F;
+      --ink-secondary: #6E6E73;
+      --ink-tertiary: #86868B;
+      --accent: #0071E3;
+      --hairline: rgba(0, 0, 0, 0.08);
+      --hairline-strong: rgba(0, 0, 0, 0.14);
+    }
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; background: #f5f5f7; color: #1d1d1f; }
-    .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-    .login-box { background: white; padding: 48px; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); max-width: 400px; width: 100%; text-align: center; }
-    .login-box h1 { font-size: 24px; margin-bottom: 8px; }
-    .login-box p { color: #6e6e73; font-size: 14px; margin-bottom: 24px; }
-    .login-box input { width: 100%; padding: 12px 16px; border: 1px solid #d2d2d7; border-radius: 10px; font-size: 15px; margin-bottom: 16px; outline: none; }
-    .login-box input:focus { border-color: #0071E3; }
-    .login-box button { width: 100%; padding: 12px; background: #0071E3; color: white; border: none; border-radius: 10px; font-size: 15px; font-weight: 600; cursor: pointer; }
-    .login-box button:hover { background: #0059B3; }
-    .login-error { color: #FF3B30; font-size: 13px; margin-bottom: 12px; display: none; }
+    body { font-family: var(--font-system); background: var(--canvas); color: var(--ink-primary); min-height: 100vh; -webkit-font-smoothing: antialiased; }
+    .login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px; }
+    .login-box { background: var(--surface-card); border: 1px solid var(--hairline-strong); padding: 44px 36px; border-radius: 24px; box-shadow: 0 12px 36px rgba(0,0,0,0.06); max-width: 400px; width: 100%; text-align: center; }
+    .login-box img { height: 28px; margin: 0 auto 20px; }
+    .login-box h1 { font-size: 20px; font-weight: 600; letter-spacing: -0.015em; margin-bottom: 6px; }
+    .login-box p { color: var(--ink-secondary); font-size: 14px; margin-bottom: 24px; }
+    .login-box input { width: 100%; padding: 12px 14px; border: 1px solid var(--hairline-strong); background: var(--canvas); color: var(--ink-primary); border-radius: 12px; font-size: 15px; margin-bottom: 14px; outline: none; }
+    .login-box input:focus { border-color: var(--accent); }
+    .login-box button { width: 100%; padding: 12px; background: var(--accent); color: white; border: none; border-radius: 980px; font-size: 15px; font-weight: 500; cursor: pointer; }
+    .login-error { color: #D70015; font-size: 13px; margin-bottom: 12px; display: none; }
 
     .dashboard { display: none; }
-    .topbar { background: white; padding: 16px 32px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e5e5ea; position: sticky; top: 0; z-index: 10; }
-    .topbar h1 { font-size: 20px; }
-    .topbar button { background: none; border: 1px solid #d2d2d7; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; }
-    .topbar button:hover { background: #f5f5f7; }
+    .topbar { background: rgba(251,251,253,0.78); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); padding: 0 24px; height: 54px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--hairline); position: sticky; top: 0; z-index: 10; }
+    .topbar-left { display: flex; align-items: center; gap: 14px; }
+    .topbar-left img { height: 24px; }
+    .topbar-label { font-size: 12px; color: var(--ink-tertiary); font-weight: 500; }
+    .topbar-actions { display: flex; gap: 8px; align-items: center; }
+    .btn-top { background: var(--surface-alt); color: var(--ink-primary); border: 1px solid var(--hairline); padding: 6px 14px; border-radius: 980px; cursor: pointer; font-size: 12.5px; font-weight: 500; text-decoration: none; }
+    .refresh-btn { background: var(--accent); color: white; border: none; padding: 6px 14px; border-radius: 980px; cursor: pointer; font-size: 12.5px; font-weight: 500; }
 
-    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; padding: 32px; }
-    .stat-card { background: white; padding: 24px; border-radius: 16px; box-shadow: 0 2px 10px rgba(0,0,0,0.04); }
-    .stat-card .number { font-size: 36px; font-weight: 700; color: #0071E3; }
-    .stat-card .label { font-size: 13px; color: #6e6e73; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; padding: 32px 24px; max-width: 1200px; margin: 0 auto; }
+    .stat-card { background: var(--surface-card); border: 1px solid var(--hairline); padding: 22px; border-radius: 18px; }
+    .stat-card .number { font-size: 30px; font-weight: 600; letter-spacing: -0.025em; color: var(--ink-primary); }
+    .stat-card .label { font-size: 12px; color: var(--ink-tertiary); font-weight: 500; margin-top: 4px; }
 
-    .tabs { display: flex; gap: 0; padding: 0 32px; border-bottom: 1px solid #e5e5ea; background: white; }
-    .tab { padding: 14px 24px; font-size: 14px; font-weight: 500; color: #6e6e73; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.2s; }
-    .tab:hover { color: #1d1d1f; }
-    .tab.active { color: #0071E3; border-bottom-color: #0071E3; }
+    .controls-bar { max-width: 1200px; margin: 0 auto; padding: 0 24px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
+    .tabs { display: inline-flex; gap: 4px; background: rgba(118,118,128,0.12); padding: 3px; border-radius: 980px; }
+    .tab { padding: 6px 16px; font-size: 13px; font-weight: 500; color: var(--ink-secondary); cursor: pointer; border-radius: 980px; }
+    .tab.active { color: var(--ink-primary); background: var(--surface-card); font-weight: 600; box-shadow: 0 2px 6px rgba(0,0,0,0.08); }
+    .search-input { padding: 8px 14px; border-radius: 980px; border: 1px solid var(--hairline-strong); background: var(--surface-card); color: var(--ink-primary); font-size: 13px; min-width: 240px; outline: none; }
 
-    .table-wrapper { padding: 24px 32px; }
-    table { width: 100%; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.04); border-collapse: collapse; }
-    th { background: #f5f5f7; padding: 12px 16px; text-align: left; font-size: 12px; font-weight: 600; color: #6e6e73; text-transform: uppercase; letter-spacing: 0.05em; }
-    td { padding: 14px 16px; font-size: 14px; border-top: 1px solid #f0f0f5; }
-    tr:hover td { background: #fafafa; }
-    .badge { display: inline-block; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 600; }
-    .badge-pending { background: #FFF3E0; color: #E65100; }
-    .badge-completed { background: #E8F5E9; color: #2E7D32; }
-    .empty { text-align: center; padding: 60px; color: #6e6e73; }
-    .refresh-btn { background: #0071E3; color: white; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px; font-weight: 500; }
-    .refresh-btn:hover { background: #0059B3; }
+    .table-wrapper { padding: 8px 24px 48px; max-width: 1200px; margin: 0 auto; overflow-x: auto; }
+    table { width: 100%; background: var(--surface-card); border: 1px solid var(--hairline); border-radius: 18px; overflow: hidden; border-collapse: collapse; }
+    th { background: var(--surface-alt); padding: 12px 16px; text-align: left; font-size: 11px; font-weight: 600; color: var(--ink-tertiary); text-transform: uppercase; letter-spacing: 0.04em; }
+    td { padding: 14px 16px; font-size: 13.5px; border-top: 1px solid var(--hairline); color: var(--ink-secondary); }
+    td strong { color: var(--ink-primary); font-weight: 600; }
+    .badge { display: inline-block; padding: 3px 10px; border-radius: 980px; font-size: 11px; font-weight: 600; cursor: pointer; }
+    .badge-pending { background: rgba(255,149,0,0.12); color: #B25000; }
+    .badge-completed { background: rgba(52,199,89,0.12); color: #1D7A34; }
+    .empty { text-align: center; padding: 56px; color: var(--ink-tertiary); background: var(--surface-card); border-radius: 18px; border: 1px solid var(--hairline); font-size: 14px; }
+    .telemetry-cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; margin-bottom: 20px; }
+
+    @media (max-width: 768px) {
+      .topbar { height: auto; min-height: 54px; padding: 10px 16px; flex-wrap: wrap; gap: 8px; }
+      .topbar-label { display: none; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; padding: 20px 16px; }
+      .stat-card { padding: 16px; }
+      .stat-card .number { font-size: 24px; }
+      .controls-bar { padding: 0 16px 14px; flex-direction: column; align-items: stretch; }
+      .tabs { overflow-x: auto; max-width: 100%; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+      .tabs::-webkit-scrollbar { display: none; }
+      .tab { flex-shrink: 0; white-space: nowrap; }
+      .search-input { width: 100%; min-width: 0; font-size: 16px; }
+      .table-wrapper { padding: 8px 16px 36px; }
+      .login-box { padding: 32px 22px; }
+      .login-box input { font-size: 16px; }
+    }
+    @media (max-width: 420px) {
+      .stats-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Login Screen -->
   <div class="login-screen" id="loginScreen">
     <div class="login-box">
-      <h1>🔐 Admin Dashboard</h1>
-      <p>MicroSIS.ai — Enter your admin password</p>
-      <div class="login-error" id="loginError">Invalid password. Try again.</div>
-      <input type="password" id="adminPassword" placeholder="Admin password" autofocus>
-      <button onclick="login()">Sign In</button>
+      <img src="/logo/microsis-logo-final.svg" alt="MicroSIS">
+      <h1>Administrative Console</h1>
+      <p>Enter your administrative token to continue.</p>
+      <div class="login-error" id="loginError">Invalid credentials.</div>
+      <input type="password" id="adminPassword" placeholder="Passcode" autofocus>
+      <button onclick="login()">Continue</button>
     </div>
   </div>
 
-  <!-- Dashboard -->
   <div class="dashboard" id="dashboard">
     <div class="topbar">
-      <h1>📊 MicroSIS Admin</h1>
-      <div>
-        <button class="refresh-btn" onclick="loadAll()">↻ Refresh</button>
-        <button onclick="logout()" style="margin-left:8px">Sign Out</button>
+      <div class="topbar-left">
+        <img src="/logo/microsis-logo-final.svg" alt="MicroSIS">
+        <span class="topbar-label">Administrative Console</span>
+      </div>
+      <div class="topbar-actions">
+        <a href="/" class="btn-top">← Site</a>
+        <button class="btn-top" onclick="exportCSV()">Export CSV</button>
+        <button class="refresh-btn" onclick="loadAll()">Refresh</button>
+        <button class="btn-top" onclick="logout()">Sign Out</button>
       </div>
     </div>
 
-    <div class="stats-grid" id="statsGrid">
-      <div class="stat-card"><div class="number" id="statLeads">0</div><div class="label">Messages / Leads</div></div>
-      <div class="stat-card"><div class="number" id="statDemos">0</div><div class="label">Demo Requests</div></div>
-      <div class="stat-card"><div class="number" id="statOrders">0</div><div class="label">Orders</div></div>
-      <div class="stat-card"><div class="number" id="statSubs">0</div><div class="label">Newsletter Subs</div></div>
+    <div class="stats-grid">
+      <div class="stat-card"><div class="number" id="statSessions">0</div><div class="label">Unique Sessions</div></div>
+      <div class="stat-card"><div class="number" id="statEvents">0</div><div class="label">Tracked Signals</div></div>
+      <div class="stat-card"><div class="number" id="statLeads">0</div><div class="label">Inquiries</div></div>
+      <div class="stat-card"><div class="number" id="statDemos">0</div><div class="label">Briefing Requests</div></div>
+      <div class="stat-card"><div class="number" id="statOrders">0</div><div class="label">Workspaces</div></div>
+      <div class="stat-card"><div class="number" id="statMrr">$0</div><div class="label">Monthly Recurring</div></div>
     </div>
 
-    <div class="tabs">
-      <div class="tab active" data-tab="leads" onclick="switchTab('leads')">Messages</div>
-      <div class="tab" data-tab="demos" onclick="switchTab('demos')">Demo Requests</div>
-      <div class="tab" data-tab="orders" onclick="switchTab('orders')">Orders</div>
-      <div class="tab" data-tab="subs" onclick="switchTab('subs')">Newsletter</div>
+    <div class="controls-bar">
+      <div class="tabs">
+        <div class="tab active" data-tab="telemetry" onclick="switchTab('telemetry')">Telemetry &amp; Funnel</div>
+        <div class="tab" data-tab="leads" onclick="switchTab('leads')">Inquiries</div>
+        <div class="tab" data-tab="demos" onclick="switchTab('demos')">Briefings</div>
+        <div class="tab" data-tab="orders" onclick="switchTab('orders')">Workspaces</div>
+        <div class="tab" data-tab="subs" onclick="switchTab('subs')">Subscribers</div>
+      </div>
+      <input type="text" class="search-input" id="searchInput" placeholder="Filter records..." oninput="renderCurrentTab()">
     </div>
 
     <div class="table-wrapper">
@@ -91,12 +136,19 @@
 
   <script>
     let token = '';
-    let data = { leads: [], demos: [], orders: [], subscribers: [] };
+    let data = { leads: [], demos: [], orders: [], subscribers: [], telemetry: { events: [], byType: [], byTarget: [] } };
 
     document.getElementById('adminPassword').addEventListener('keydown', e => { if (e.key === 'Enter') login(); });
 
-    async function apiFetch(endpoint) {
-      const res = await fetch(endpoint, { headers: { 'Authorization': 'Bearer ' + token } });
+    async function apiFetch(endpoint, options = {}) {
+      const res = await fetch(endpoint, {
+        ...options,
+        headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json',
+          ...(options.headers || {})
+        }
+      });
       if (res.status === 401) { logout(); return null; }
       return res.json();
     }
@@ -122,24 +174,41 @@
     }
 
     async function loadAll() {
-      const [stats, leads, demos, orders, subs] = await Promise.all([
+      const [stats, leads, demos, orders, subs, telemetry] = await Promise.all([
         apiFetch('/api/admin/stats'),
         apiFetch('/api/admin/leads'),
         apiFetch('/api/admin/demo-requests'),
         apiFetch('/api/admin/orders'),
-        apiFetch('/api/admin/newsletter')
+        apiFetch('/api/admin/newsletter'),
+        apiFetch('/api/admin/telemetry')
       ]);
-      if (stats) {
+      if (stats && stats.stats) {
+        document.getElementById('statSessions').textContent = stats.stats.sessions || 0;
+        document.getElementById('statEvents').textContent = stats.stats.events || 0;
         document.getElementById('statLeads').textContent = stats.stats.leads;
         document.getElementById('statDemos').textContent = stats.stats.demos;
         document.getElementById('statOrders').textContent = stats.stats.orders;
-        document.getElementById('statSubs').textContent = stats.stats.subscribers;
+        document.getElementById('statMrr').textContent = '$' + (stats.stats.mrr || 0).toLocaleString();
       }
-      if (leads) data.leads = leads.leads;
-      if (demos) data.demos = demos.demos;
-      if (orders) data.orders = orders.orders;
-      if (subs) data.subscribers = subs.subscribers;
+      if (leads) data.leads = leads.leads || [];
+      if (demos) data.demos = demos.demos || [];
+      if (orders) data.orders = orders.orders || [];
+      if (subs) data.subscribers = subs.subscribers || [];
+      if (telemetry && telemetry.success) {
+        data.telemetry = {
+          events: telemetry.events || [],
+          byType: telemetry.byType || [],
+          byTarget: telemetry.byTarget || []
+        };
+      }
       renderCurrentTab();
+    }
+
+    async function toggleStatus(type, id, current) {
+      const next = current === 'pending' ? 'completed' : 'pending';
+      const endpoint = type === 'demos' ? `/api/admin/demo-requests/${id}` : `/api/admin/orders/${id}`;
+      await apiFetch(endpoint, { method: 'PATCH', body: JSON.stringify({ status: next }) });
+      await loadAll();
     }
 
     function switchTab(tab) {
@@ -154,62 +223,133 @@
 
     function renderCurrentTab() {
       const tab = getActiveTab();
+      const q = (document.getElementById('searchInput').value || '').toLowerCase();
       const container = document.getElementById('tableContent');
-      
-      if (tab === 'leads') {
-        if (!data.leads.length) { container.innerHTML = '<div class="empty">No messages yet</div>'; return; }
+
+      if (tab === 'telemetry') {
+        const events = data.telemetry.events.filter(e => JSON.stringify(e).toLowerCase().includes(q));
+        const byType = data.telemetry.byType || [];
+        const byTarget = data.telemetry.byTarget || [];
+        const maxTypeCount = Math.max(...byType.map(x => x.count), 1);
+        const maxTargetCount = Math.max(...byTarget.map(x => x.count), 1);
+
+        container.innerHTML = `
+          <div class="telemetry-cards-grid">
+            <div style="background:var(--surface-card);border:1px solid var(--hairline);border-radius:18px;padding:22px">
+              <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-tertiary);margin-bottom:14px">Interaction Signal Breakdown</div>
+              ${byType.map(item => `
+                <div style="margin-bottom:10px">
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
+                    <strong>${item.event_type}</strong>
+                    <span style="font-family:var(--font-mono);color:var(--ink-secondary)">${item.count} events</span>
+                  </div>
+                  <div style="height:7px;background:var(--surface-alt);border-radius:980px;overflow:hidden">
+                    <div style="height:100%;width:${Math.round((item.count / maxTypeCount) * 100)}%;background:var(--accent);border-radius:980px"></div>
+                  </div>
+                </div>
+              `).join('') || '<div style="color:var(--ink-tertiary);font-size:13px">No interaction signals yet.</div>'}
+            </div>
+            <div style="background:var(--surface-card);border:1px solid var(--hairline);border-radius:18px;padding:22px">
+              <div style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;color:var(--ink-tertiary);margin-bottom:14px">Top Engaged Capabilities &amp; Targets</div>
+              ${byTarget.map(item => `
+                <div style="margin-bottom:10px">
+                  <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px">
+                    <strong>${item.target}</strong>
+                    <span style="font-family:var(--font-mono);color:var(--ink-secondary)">${item.count} touches</span>
+                  </div>
+                  <div style="height:7px;background:var(--surface-alt);border-radius:980px;overflow:hidden">
+                    <div style="height:100%;width:${Math.round((item.count / maxTargetCount) * 100)}%;background:#30D158;border-radius:980px"></div>
+                  </div>
+                </div>
+              `).join('') || '<div style="color:var(--ink-tertiary);font-size:13px">No capability targets recorded yet.</div>'}
+            </div>
+          </div>
+          <table>
+            <tr><th>Timestamp</th><th>Session Digest</th><th>Signal Type</th><th>Section</th><th>Target</th><th>Metadata</th></tr>
+            ${events.slice(0, 60).map(ev => `<tr>
+              <td style="font-family:var(--font-mono);font-size:12px">${new Date(ev.created_at).toLocaleString()}</td>
+              <td style="font-family:var(--font-mono);font-size:12px"><strong>${ev.session_id}</strong></td>
+              <td><span class="badge badge-completed">${ev.event_type}</span></td>
+              <td>${ev.section || '-'}</td>
+              <td><strong>${ev.target || '-'}</strong></td>
+              <td style="font-family:var(--font-mono);font-size:11.5px;max-width:280px;overflow:hidden;text-overflow:ellipsis">${ev.metadata || '{}'}</td>
+            </tr>`).join('')}
+          </table>
+        `;
+      } else if (tab === 'leads') {
+        const rows = data.leads.filter(l => JSON.stringify(l).toLowerCase().includes(q));
+        if (!rows.length) { container.innerHTML = '<div class="empty">No inquiries recorded.</div>'; return; }
         container.innerHTML = `<table>
-          <tr><th>Date</th><th>Name</th><th>Email</th><th>Company</th><th>Product</th><th>Message</th></tr>
-          ${data.leads.map(l => `<tr>
+          <tr><th>Date</th><th>Name</th><th>Email</th><th>Organization</th><th>Capability</th><th>Message</th></tr>
+          ${rows.map(l => `<tr>
             <td>${new Date(l.created_at).toLocaleDateString()}</td>
             <td><strong>${l.first_name} ${l.last_name}</strong></td>
             <td>${l.email}</td>
-            <td>${l.company || '—'}</td>
-            <td>${l.product_interest || '—'}</td>
-            <td style="max-width:300px;overflow:hidden;text-overflow:ellipsis">${l.message || '—'}</td>
+            <td>${l.company || '-'}</td>
+            <td>${l.product_interest || 'Platform'}</td>
+            <td style="max-width:340px">${l.message || '-'}</td>
           </tr>`).join('')}
         </table>`;
       } else if (tab === 'demos') {
-        if (!data.demos.length) { container.innerHTML = '<div class="empty">No demo requests yet</div>'; return; }
+        const rows = data.demos.filter(d => JSON.stringify(d).toLowerCase().includes(q));
+        if (!rows.length) { container.innerHTML = '<div class="empty">No briefing requests recorded.</div>'; return; }
         container.innerHTML = `<table>
-          <tr><th>Date</th><th>Name</th><th>Email</th><th>Company</th><th>Size</th><th>Product</th><th>Preferred Date</th><th>Status</th></tr>
-          ${data.demos.map(d => `<tr>
+          <tr><th>Date</th><th>Name</th><th>Email</th><th>Organization</th><th>Size</th><th>Capability</th><th>Context</th><th>Status</th></tr>
+          ${rows.map(d => `<tr>
             <td>${new Date(d.created_at).toLocaleDateString()}</td>
             <td><strong>${d.first_name} ${d.last_name}</strong></td>
             <td>${d.email}</td>
-            <td>${d.company || '—'}</td>
-            <td>${d.company_size || '—'}</td>
+            <td>${d.company || '-'}</td>
+            <td>${d.company_size || '-'}</td>
             <td>${d.product_slug}</td>
-            <td>${d.preferred_date || '—'}</td>
-            <td><span class="badge badge-${d.status === 'pending' ? 'pending' : 'completed'}">${d.status}</span></td>
+            <td style="max-width:260px">${d.message || '-'}</td>
+            <td><span class="badge badge-${d.status === 'pending' ? 'pending' : 'completed'}" onclick="toggleStatus('demos', ${d.id}, '${d.status}')">${d.status}</span></td>
           </tr>`).join('')}
         </table>`;
       } else if (tab === 'orders') {
-        if (!data.orders.length) { container.innerHTML = '<div class="empty">No orders yet</div>'; return; }
+        const rows = data.orders.filter(o => JSON.stringify(o).toLowerCase().includes(q));
+        if (!rows.length) { container.innerHTML = '<div class="empty">No workspaces provisioned.</div>'; return; }
         container.innerHTML = `<table>
-          <tr><th>Date</th><th>Order #</th><th>Name</th><th>Email</th><th>Product</th><th>Plan</th><th>Amount</th><th>Status</th></tr>
-          ${data.orders.map(o => `<tr>
+          <tr><th>Date</th><th>Reference</th><th>Name</th><th>Email</th><th>Organization</th><th>Capability</th><th>Tier</th><th>Billing</th><th>Status</th></tr>
+          ${rows.map(o => `<tr>
             <td>${new Date(o.created_at).toLocaleDateString()}</td>
             <td><strong>${o.order_number}</strong></td>
             <td>${o.first_name} ${o.last_name}</td>
             <td>${o.email}</td>
+            <td>${o.company || '-'}</td>
             <td>${o.product_slug}</td>
             <td>${o.plan}</td>
-            <td>$${o.amount}/${o.billing_cycle === 'annual' ? 'yr' : 'mo'}</td>
-            <td><span class="badge badge-${o.status === 'pending' ? 'pending' : 'completed'}">${o.status}</span></td>
+            <td>$${o.amount}/${o.billing_cycle === 'annual' ? 'mo (ann)' : 'mo'}</td>
+            <td><span class="badge badge-${o.status === 'pending' ? 'pending' : 'completed'}" onclick="toggleStatus('orders', ${o.id}, '${o.status}')">${o.status}</span></td>
           </tr>`).join('')}
         </table>`;
       } else if (tab === 'subs') {
-        if (!data.subscribers.length) { container.innerHTML = '<div class="empty">No subscribers yet</div>'; return; }
+        const rows = data.subscribers.filter(s => JSON.stringify(s).toLowerCase().includes(q));
+        if (!rows.length) { container.innerHTML = '<div class="empty">No subscribers recorded.</div>'; return; }
         container.innerHTML = `<table>
           <tr><th>Date</th><th>Email</th><th>Status</th></tr>
-          ${data.subscribers.map(s => `<tr>
+          ${rows.map(s => `<tr>
             <td>${new Date(s.subscribed_at).toLocaleDateString()}</td>
             <td>${s.email}</td>
-            <td><span class="badge badge-completed">${s.active ? 'Active' : 'Unsubscribed'}</span></td>
+            <td><span class="badge badge-completed">${s.active ? 'Active' : 'Inactive'}</span></td>
           </tr>`).join('')}
         </table>`;
       }
+    }
+
+    function exportCSV() {
+      const tab = getActiveTab();
+      const map = { telemetry: data.telemetry.events, leads: data.leads, demos: data.demos, orders: data.orders, subs: data.subscribers };
+      const rows = map[tab] || [];
+      if (!rows.length) return alert('No records to export.');
+      const headers = Object.keys(rows[0]);
+      const csv = [headers.join(','), ...rows.map(r => headers.map(h => JSON.stringify(r[h] ?? '')).join(','))].join('\n');
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `microsis-${tab}-${new Date().toISOString().slice(0,10)}.csv`;
+      a.click();
     }
   </script>
 </body>
