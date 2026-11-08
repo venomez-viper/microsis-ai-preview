@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/products", "destination": "/capabilities.html" },
+    { "source": "/products/docmind", "destination": "/docmind.html" },
+    { "source": "/products/voiceforge", "destination": "/voiceforge.html" },
+    { "source": "/products/complianceai", "destination": "/complianceai.html" },
+    { "source": "/products/predictflow", "destination": "/predictflow.html" },
+    { "source": "/products/guardnet", "destination": "/guardnet.html" },
+    { "source": "/msa", "destination": "/terms.html" },
+    { "source": "/baa", "destination": "/dpa.html" },
+    { "source": "/ai-policy", "destination": "/aup.html" },
+    { "source": "/trust", "destination": "/sla.html" }
+  ]
+}
