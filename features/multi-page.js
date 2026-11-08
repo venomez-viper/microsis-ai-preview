@@ -340,6 +340,10 @@
     if (PAGE_BY_PATH[pathname]) {
       return PAGE_BY_PATH[pathname];
     }
+    var lastSeg = '/' + pathname.split('/').filter(Boolean).pop();
+    if (lastSeg && PAGE_BY_PATH[lastSeg]) {
+      return PAGE_BY_PATH[lastSeg];
+    }
     var bodyPage = document.body && document.body.getAttribute('data-page');
     if (bodyPage && PAGE_BY_SLUG[bodyPage]) {
       return bodyPage;
@@ -420,7 +424,7 @@
     var prevCard = document.getElementById('mpPrevCard');
     var nextCard = document.getElementById('mpNextCard');
     if (prevCard) {
-      prevCard.setAttribute('href', prevPage.file);
+      prevCard.setAttribute('href', prevPage.file.replace(/^\//, ''));
       prevCard.setAttribute('data-page-link', prevPage.slug);
       var pt = prevCard.querySelector('.mp-pager-title');
       var pd = prevCard.querySelector('.mp-pager-desc');
@@ -428,7 +432,7 @@
       if (pd) pd.textContent = prevPage.desc;
     }
     if (nextCard) {
-      nextCard.setAttribute('href', nextPage.file);
+      nextCard.setAttribute('href', nextPage.file.replace(/^\//, ''));
       nextCard.setAttribute('data-page-link', nextPage.slug);
       var nt = nextCard.querySelector('.mp-pager-title');
       var nd = nextCard.querySelector('.mp-pager-desc');
@@ -452,12 +456,12 @@
     var prevBtn = document.getElementById('mpPrevPageBtn');
     var nextBtn = document.getElementById('mpNextPageBtn');
     if (prevBtn) {
-      prevBtn.setAttribute('href', prevPage.file);
+      prevBtn.setAttribute('href', prevPage.file.replace(/^\//, ''));
       prevBtn.setAttribute('data-page-link', prevPage.slug);
       prevBtn.textContent = '\u2190 Previous: ' + prevPage.navLabel;
     }
     if (nextBtn) {
-      nextBtn.setAttribute('href', nextPage.file);
+      nextBtn.setAttribute('href', nextPage.file.replace(/^\//, ''));
       nextBtn.setAttribute('data-page-link', nextPage.slug);
       nextBtn.textContent = 'Next: ' + nextPage.navLabel + ' \u2192';
     }
@@ -510,7 +514,9 @@
     revealVisibleFadeUps();
 
     if (opts.pushState && window.location.protocol.indexOf('http') === 0) {
-      var targetUrl = page.path + (opts.hash ? '#' + opts.hash : '');
+      var isStaticHost = window.location.hostname.indexOf('github.io') !== -1;
+      var targetPath = isStaticHost ? page.file.replace(/^\//, '') : page.path;
+      var targetUrl = targetPath + (opts.hash ? '#' + opts.hash : '');
       if (window.location.pathname + window.location.hash !== targetUrl) {
         try {
           window.history.pushState({ page: page.slug, hash: opts.hash || '' }, '', targetUrl);
@@ -627,12 +633,14 @@
           return;
         }
 
-        // 5. Path-based link (/docmind, /docmind.html, /about.html, etc.)
+        // 5. Path-based link (/docmind, /docmind.html, docmind.html, /about.html, etc.)
         var pathPart = rawHref.split('#')[0];
+        var normalizedPath = pathPart ? '/' + pathPart.replace(/^\.?\//, '') : '';
         var hashPart = rawHref.indexOf('#') !== -1 ? rawHref.split('#')[1] : '';
-        if (pathPart && PAGE_BY_PATH[pathPart]) {
+        var matchedSlug = PAGE_BY_PATH[pathPart] || PAGE_BY_PATH[normalizedPath];
+        if (pathPart && matchedSlug) {
           e.preventDefault();
-          switchPage(PAGE_BY_PATH[pathPart], {
+          switchPage(matchedSlug, {
             pushState: true,
             hash: hashPart,
             scrollTargetId: hashPart

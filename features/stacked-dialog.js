@@ -21,7 +21,7 @@
       label: '5-Day Production Rollout Protocol',
       offset: 10,
       clickable: true,
-      avatar: '/logo/microsis-mark.svg',
+      avatar: 'logo/microsis-mark.svg',
       steps: [
         {
           eyebrow: 'Day 01',
