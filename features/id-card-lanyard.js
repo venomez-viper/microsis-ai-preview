@@ -5,8 +5,132 @@
 (function () {
   'use strict';
 
+  function ensureLanyardRoot() {
+    var existing = document.getElementById('contactLanyardRoot');
+    if (existing) return existing;
+    var wrap = document.createElement('div');
+    wrap.id = 'contactLanyardRoot';
+    wrap.className = 'idcl-root';
+    wrap.style.setProperty('--idcl-z', '60');
+    wrap.innerHTML =
+      '<div class="idcl-stage">' +
+        '<canvas class="idcl-rope"></canvas>' +
+        '<div class="idcl-rail"></div>' +
+        '<div class="idcl-card">' +
+          '<div class="idcl-flipper">' +
+            '<div class="idcl-face idcl-front">' +
+              '<div class="idcl-hole"></div>' +
+              '<div class="idcl-holo"></div>' +
+              '<div class="idcl-header">' +
+                '<div class="idcl-brand">' +
+                  '<span class="idcl-brand-mark">&#9650;</span>' +
+                  '<div class="idcl-brand-text">' +
+                    '<b>MICROSIS.AI</b>' +
+                    '<small>Enterprise AI Lab</small>' +
+                  '</div>' +
+                '</div>' +
+                '<div class="idcl-pillars">' +
+                  '<span>Ship</span>' +
+                  '<span>Trust</span>' +
+                  '<span>Explain</span>' +
+                  '<i></i>' +
+                '</div>' +
+              '</div>' +
+              '<div class="idcl-photo">' +
+                '<svg viewBox="0 0 182 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">' +
+                  '<defs>' +
+                    '<linearGradient id="idcl-faceGrad" x1="0" y1="0" x2="1" y2="1">' +
+                      '<stop offset="0" stop-color="#8fb0ff" />' +
+                      '<stop offset="1" stop-color="#3f5fd8" />' +
+                    '</linearGradient>' +
+                    '<pattern id="idcl-dots" width="6" height="6" patternUnits="userSpaceOnUse">' +
+                      '<circle cx="3" cy="3" r="0.8" fill="#ffffff" opacity="0.35" />' +
+                    '</pattern>' +
+                  '</defs>' +
+                  '<rect width="182" height="100" fill="#12151c" />' +
+                  '<circle cx="91" cy="62" r="46" fill="url(#idcl-faceGrad)" />' +
+                  '<path d="M42,46 Q91,-18 140,46 L140,66 Q91,38 42,66 Z" fill="#1c2029" />' +
+                  '<circle cx="72" cy="62" r="3.6" fill="#12151c" />' +
+                  '<circle cx="110" cy="62" r="3.6" fill="#12151c" />' +
+                  '<path d="M75,78 Q91,86 107,78" stroke="#12151c" stroke-width="2.8" fill="none" stroke-linecap="round" />' +
+                  '<rect width="182" height="100" fill="url(#idcl-dots)" />' +
+                '</svg>' +
+                '<span class="idcl-verified">' +
+                  '<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">' +
+                    '<path d="M4 12l5 5L20 6" />' +
+                  '</svg>' +
+                '</span>' +
+              '</div>' +
+              '<h2 class="idcl-name">Solutions Team</h2>' +
+              '<p class="idcl-role">Enterprise AI Engineering</p>' +
+              '<div class="idcl-divider"></div>' +
+              '<div class="idcl-idrow">' +
+                '<div class="idcl-idrow-labels">' +
+                  '<div><span>ID</span><b>MS-088642</b></div>' +
+                  '<div><span>Location</span><b>Austin, TX</b></div>' +
+                  '<div><span>Valid Thru</span><b>12/2029</b></div>' +
+                '</div>' +
+                '<div class="idcl-qr idcl-small idcl-qr-front"></div>' +
+              '</div>' +
+              '<div class="idcl-footer">Build<i>&middot;</i>Ship<i>&middot;</i>Iterate</div>' +
+            '</div>' +
+            '<div class="idcl-face idcl-back">' +
+              '<div class="idcl-hole"></div>' +
+              '<div class="idcl-holo"></div>' +
+              '<div class="idcl-stripe"></div>' +
+              '<div class="idcl-idnum"><span>NO. MS-088642</span><em>VALID 12/2029</em></div>' +
+              '<div class="idcl-barcode"></div>' +
+              '<div class="idcl-backrow">' +
+                '<div class="idcl-qr idcl-qr-back"></div>' +
+                '<div class="idcl-scan">' +
+                  '<b>Scan for briefing</b>' +
+                  'microsis.ai/contact<br />5 AI Products,<br />SOC 2 &amp; HIPAA Vault.' +
+                '</div>' +
+              '</div>' +
+              '<div class="idcl-connect">' +
+                '<span>Connect</span>' +
+                '<div class="idcl-connect-icons">' +
+                  '<a href="https://github.com/MicroSIS-LLC/microsis-ai" target="_blank" rel="noopener noreferrer" aria-label="GitHub">' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                      '<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />' +
+                    '</svg>' +
+                  '</a>' +
+                  '<a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                      '<path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />' +
+                      '<rect x="2" y="9" width="4" height="12" />' +
+                      '<circle cx="4" cy="4" r="2" />' +
+                    '</svg>' +
+                  '</a>' +
+                  '<a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">' +
+                    '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                      '<rect x="2" y="2" width="20" height="20" rx="5" ry="5" />' +
+                      '<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />' +
+                      '<line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />' +
+                    '</svg>' +
+                  '</a>' +
+                '</div>' +
+              '</div>' +
+              '<div class="idcl-sig">' +
+                '<div class="idcl-script">Solutions Team</div>' +
+                '<small>Authorized Signature</small>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div class="idcl-hint">' +
+          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">' +
+            '<path d="M12 3v18M7 8l-4 4 4 4M17 8l4 4-4 4" />' +
+          '</svg>' +
+          'Drag to swing &middot; Click to flip' +
+        '</div>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    return wrap;
+  }
+
   function initIDCardLanyard() {
-    var root = document.getElementById('contactLanyardRoot');
+    var root = ensureLanyardRoot();
     if (!root) return;
 
     // Load Google Fonts once
@@ -63,7 +187,7 @@
     buildQR(qrBackEl, 928371);
     buildQR(qrFrontEl, 574123);
 
-    var anchorX = 'calc(100% - 170px)';
+    var anchorX = 'calc(100% - 155px)';
     var anchorY = 98;
 
     function resolveAnchorX() {

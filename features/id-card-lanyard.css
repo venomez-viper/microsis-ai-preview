@@ -192,7 +192,19 @@ html[data-active-page="contact"] .idcl-root {
   top: 108px !important;
 }
 
-@media (max-width: 1180px) {
+@media (min-width: 1200px) {
+  .cs-contact-container {
+    max-width: 1420px !important;
+    padding-right: 285px !important;
+  }
+
+  .cs-contact-grid {
+    grid-template-columns: 0.9fr 1.1fr !important;
+    gap: 2.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
   /* Hide floating lanyard on tablets and phones so it never overlaps the Contact form */
   html[data-active-page="contact"] .idcl-root,
   .idcl-root {
