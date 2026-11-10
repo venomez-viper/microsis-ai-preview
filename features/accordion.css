@@ -81,3 +81,893 @@
   .acc-content[data-state] { animation: none; }
   .acc-chevron { transition: none; }
 }
+
+/* ==========================================================================
+   COMPREHENSIVE MOBILE & PHONE RESPONSIVE ARCHITECTURE (<= 980px, <= 640px, <= 400px)
+   Loaded last across all 19 pages so every route renders cleanly on iOS & Android
+   without horizontal overflow, navbar crowding, clipped cards, or oversized spacing.
+   ========================================================================== */
+
+@media (max-width: 980px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+    max-width: 100vw !important;
+  }
+
+  main,
+  section,
+  footer {
+    max-width: 100vw;
+    overflow-x: clip;
+  }
+
+  /* Hide desktop Command+K pill on tablet/phone so navbar doesn't crowd */
+  .nav-cta .cmd-k-trigger {
+    display: none !important;
+  }
+
+  /* Fix 2-span mobile hamburger toggle X animation */
+  .mobile-toggle.active span:nth-child(1) {
+    transform: translateY(3.25px) rotate(45deg) !important;
+  }
+
+  .mobile-toggle.active span:nth-child(2) {
+    opacity: 1 !important;
+    transform: translateY(-3.25px) rotate(-45deg) !important;
+  }
+
+  /* Show mobile CTA button inside the open hamburger drawer */
+  .nav-links.open .nav-cta.mobile {
+    display: block !important;
+    margin-top: 0.5rem;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--hairline);
+  }
+
+  .nav-links.open .nav-cta.mobile .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.9rem !important;
+    color: #FFFFFF !important;
+    background: var(--accent) !important;
+  }
+}
+
+@media (max-width: 640px) {
+  /* 1. Global Containers, Typography & Section Spacing */
+  .container,
+  .ps-container,
+  .f4-container,
+  .ctf-container,
+  .st6-container,
+  .cs-contact-container,
+  .lanyard-section-container {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  .section,
+  .ps-section,
+  .f4-section,
+  .ctf-section,
+  .st6-section,
+  .lanyard-section,
+  .product-detail.product-page-section,
+  .legal-page-section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.75rem !important;
+  }
+
+  .section-intro,
+  .section-header,
+  .ps-header,
+  .f4-header,
+  .product-detail-hero {
+    margin-bottom: 1.75rem !important;
+  }
+
+  .display-xl,
+  .product-detail-hero h1 {
+    font-size: clamp(1.9rem, 8.2vw, 2.5rem) !important;
+    line-height: 1.08 !important;
+  }
+
+  .display-lg,
+  .section-title,
+  .ps-title,
+  .f4-title,
+  .cs-main-title,
+  .legal-hero-card h1 {
+    font-size: clamp(1.6rem, 7vw, 2.15rem) !important;
+    line-height: 1.12 !important;
+  }
+
+  .display-md,
+  .cta-banner h2 {
+    font-size: clamp(1.35rem, 6vw, 1.75rem) !important;
+    line-height: 1.16 !important;
+  }
+
+  .lead-lg,
+  .lead-md,
+  .section-desc,
+  .ps-subtitle,
+  .f4-subtitle,
+  .product-detail-hero .description,
+  .legal-hero-lead {
+    font-size: 0.92rem !important;
+    line-height: 1.52 !important;
+  }
+
+  /* 2. Compact Mobile Navigation Bar & Glass Drawer */
+  .nav-inner {
+    height: 58px !important;
+    padding: 0 1rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .nav-logo {
+    gap: 0.45rem !important;
+  }
+
+  .nav-logo-mark {
+    width: 30px !important;
+    height: 30px !important;
+  }
+
+  .nav-wordmark {
+    font-size: 1.18rem !important;
+  }
+
+  /* Hide redundant topbar "Book a Demo" button on phone (it lives inside the hamburger drawer) */
+  .nav-inner > .nav-cta > .btn-primary {
+    display: none !important;
+  }
+
+  .nav-cta {
+    gap: 0.35rem !important;
+  }
+
+  .sun-moon-toggle {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .mobile-toggle {
+    width: 34px !important;
+    height: 34px !important;
+    padding: 6px !important;
+  }
+
+  .nav-links.open {
+    top: 62px !important;
+    left: 0.75rem !important;
+    right: 0.75rem !important;
+    padding: 0.85rem !important;
+    border-radius: 20px !important;
+    max-height: calc(100svh - 76px) !important;
+    overflow-y: auto !important;
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4) !important;
+  }
+
+  .nav-links.open a {
+    padding: 0.65rem 0.85rem !important;
+    font-size: 0.92rem !important;
+  }
+
+  /* 3. Sculpture Hero (.sh-root) on Home Page */
+  .sh-root {
+    --sh-h: auto !important;
+    min-height: 0 !important;
+  }
+
+  .sh-stage {
+    position: relative !important;
+    inset: auto !important;
+    width: 100% !important;
+    height: 240px !important;
+    mask-image: linear-gradient(180deg, #000 58%, transparent 100%) !important;
+    -webkit-mask-image: linear-gradient(180deg, #000 58%, transparent 100%) !important;
+  }
+
+  .sh-spacer {
+    display: none !important;
+  }
+
+  .sh-overlay {
+    min-height: 0 !important;
+    padding: 0 1rem 2rem !important;
+    margin-top: -32px !important;
+  }
+
+  .sh-content {
+    gap: 0.85rem !important;
+  }
+
+  .sh-badge {
+    max-width: 100% !important;
+    flex-wrap: wrap !important;
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0.35rem 0.65rem !important;
+    gap: 0.35rem !important;
+    font-size: 0.7rem !important;
+    border-radius: 14px !important;
+  }
+
+  .sh-badge-sep {
+    display: none !important;
+  }
+
+  .sh-h1 {
+    font-size: clamp(1.95rem, 8.8vw, 2.5rem) !important;
+    line-height: 1.06 !important;
+  }
+
+  .sh-sub {
+    font-size: 0.9rem !important;
+    line-height: 1.48 !important;
+  }
+
+  .sh-ctas {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.55rem !important;
+    margin-top: 0.25rem !important;
+  }
+
+  .sh-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 0.78rem 1.1rem !important;
+    font-size: 0.88rem !important;
+  }
+
+  .sh-proof-bar {
+    margin-top: 1.1rem !important;
+    padding-top: 0.9rem !important;
+    width: 100% !important;
+    overflow: hidden !important;
+  }
+
+  .sh-proof-list {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding-bottom: 0.25rem !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .sh-proof-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sh-proof-chip {
+    flex-shrink: 0 !important;
+    font-size: 0.68rem !important;
+    padding: 0.28rem 0.6rem !important;
+  }
+
+  /* 4. Fluid Stage Interactive Showcase (.fluid-stage-shell) */
+  .hero {
+    padding: 1.5rem 0 2.75rem !important;
+  }
+
+  .fluid-stage-shell {
+    border-radius: 20px !important;
+  }
+
+  .fluid-stage-topbar {
+    padding: 0.75rem !important;
+    gap: 0.5rem !important;
+  }
+
+  .segmented-control {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .segmented-control::-webkit-scrollbar {
+    display: none;
+  }
+
+  .segmented-btn {
+    padding: 0.36rem 0.75rem !important;
+    font-size: 0.75rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .stage-gesture-hint {
+    width: 100% !important;
+    justify-content: space-between !important;
+  }
+
+  .fluid-slide {
+    grid-template-columns: 1fr !important;
+    padding: 1.25rem 1rem !important;
+    gap: 1.25rem !important;
+  }
+
+  .slide-copy h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .slide-copy p {
+    font-size: 0.875rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .slide-kpis {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+    padding-top: 0.85rem !important;
+  }
+
+  .slide-kpi-val {
+    font-size: 1.05rem !important;
+  }
+
+  .slide-kpi-lbl {
+    font-size: 0.68rem !important;
+  }
+
+  .slide-artifact {
+    padding: 0.95rem !important;
+    border-radius: 14px !important;
+  }
+
+  .artifact-header {
+    flex-wrap: wrap !important;
+    gap: 0.35rem !important;
+  }
+
+  .artifact-row {
+    padding: 0.5rem 0.65rem !important;
+    font-size: 0.74rem !important;
+    flex-wrap: wrap !important;
+    gap: 0.25rem !important;
+  }
+
+  .artifact-row-val {
+    font-size: 0.72rem !important;
+  }
+
+  .fluid-stage-footer {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+    padding: 0.85rem 1rem !important;
+  }
+
+  .stage-meta-item {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.1rem !important;
+  }
+
+  .stage-footer-link {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    padding-top: 0.45rem !important;
+    border-top: 1px solid var(--hairline) !important;
+  }
+
+  /* 5. Guided Architecture Finder (#finder) */
+  .finder-surface {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .finder-steps-col,
+  .finder-rec-card {
+    padding: 1.25rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .finder-pill-group {
+    gap: 0.38rem !important;
+  }
+
+  .finder-pill {
+    padding: 0.4rem 0.72rem !important;
+    font-size: 0.75rem !important;
+  }
+
+  .finder-specs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.6rem !important;
+    margin-bottom: 1.25rem !important;
+  }
+
+  .finder-spec-box {
+    padding: 0.65rem 0.75rem !important;
+  }
+
+  .finder-rec-actions {
+    flex-direction: column !important;
+  }
+
+  .finder-rec-actions .btn {
+    width: 100% !important;
+  }
+
+  /* 6. Product Suite (#home-products & capabilities.html) */
+  .ps-stats-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.65rem !important;
+    margin-bottom: 1.75rem !important;
+  }
+
+  .ps-stat-card {
+    padding: 0.9rem 0.85rem !important;
+    border-radius: 14px !important;
+  }
+
+  .ps-stat-num {
+    font-size: 1.3rem !important;
+  }
+
+  .ps-stat-label {
+    font-size: 0.75rem !important;
+  }
+
+  .ps-stat-sub {
+    font-size: 0.66rem !important;
+  }
+
+  .ps-filter-wrap {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    margin-bottom: 1.5rem !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .ps-filter-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  .ps-filter-btn {
+    flex-shrink: 0 !important;
+    padding: 0.42rem 0.85rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  .pc-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.15rem !important;
+    margin-bottom: 2rem !important;
+  }
+
+  .pc-card {
+    padding: 1.25rem !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+  }
+
+  .pc-title {
+    font-size: 1.25rem !important;
+  }
+
+  .pc-metrics {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.45rem !important;
+    padding: 0.7rem !important;
+  }
+
+  .pc-metric-val {
+    font-size: 0.82rem !important;
+  }
+
+  .pc-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.75rem !important;
+  }
+
+  .pc-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.5rem !important;
+  }
+
+  .pc-btn-ghost,
+  .pc-btn-primary {
+    justify-content: center !important;
+    text-align: center !important;
+    padding: 0.55rem 0.65rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* 7. 3D Glass Folders (.gf-suite-showcase & .gf-vault-section) */
+  .gf-suite-showcase,
+  .gf-vault-section {
+    padding: 1.25rem 0.75rem !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+  }
+
+  .gf-suite-grid,
+  .gf-vault-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem !important;
+    justify-items: center !important;
+  }
+
+  .gf-root {
+    width: 100% !important;
+    max-width: 300px !important;
+    height: 270px !important;
+    margin: 0 auto !important;
+  }
+
+  .gf-stage {
+    width: 100% !important;
+    max-width: 300px !important;
+    transform: scale(0.86) !important;
+    transform-origin: center center !important;
+  }
+
+  /* 8. Spec Sheet, X-Ray Scrubber, Workbench, Architecture & ROI */
+  .spec-sheet-card {
+    padding: 1.15rem 0.9rem !important;
+    border-radius: 18px !important;
+  }
+
+  .xray-toolbar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.65rem !important;
+  }
+
+  .xray-toolbar .industry-filter-bar {
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    scrollbar-width: none;
+  }
+
+  .xray-toolbar .filter-chip {
+    flex-shrink: 0 !important;
+  }
+
+  .xray-pane {
+    padding: 1.1rem 0.9rem !important;
+  }
+
+  .xray-doc-block {
+    padding: 0.85rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .workbench-surface {
+    grid-template-columns: 1fr !important;
+    border-radius: 18px !important;
+  }
+
+  .workbench-sidebar {
+    padding: 1.25rem 1rem !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--hairline) !important;
+  }
+
+  .wb-inspector-bar {
+    padding: 0.85rem 1rem !important;
+  }
+
+  .wb-json-pre {
+    padding: 1rem !important;
+    font-size: 0.72rem !important;
+    max-height: 260px !important;
+  }
+
+  .architecture-bento,
+  .integration-bento {
+    grid-template-columns: 1fr !important;
+    gap: 1.25rem !important;
+  }
+
+  .architecture-diagram-card {
+    position: static !important;
+  }
+
+  .council-node-card {
+    padding: 0.95rem 1rem !important;
+  }
+
+  .council-node-card p {
+    padding-left: 0 !important;
+    margin-top: 0.3rem !important;
+    font-size: 0.8rem !important;
+  }
+
+  .arch-card-footer {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+  }
+
+  .council-sim-panel {
+    padding: 1rem !important;
+  }
+
+  .council-sim-controls {
+    width: 100% !important;
+  }
+
+  .council-sim-select {
+    min-width: 0 !important;
+    width: 100% !important;
+  }
+
+  .council-trace-step {
+    flex-wrap: wrap !important;
+    gap: 0.3rem 0.5rem !important;
+    padding: 0.5rem 0.65rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .roi-bento {
+    grid-template-columns: 1fr !important;
+    padding: 1.25rem 1rem !important;
+    gap: 1.25rem !important;
+    border-radius: 20px !important;
+  }
+
+  .roi-summary-pane {
+    padding: 1.25rem 1rem !important;
+  }
+
+  .roi-primary-figure {
+    font-size: clamp(1.9rem, 8vw, 2.5rem) !important;
+  }
+
+  .roi-kpi-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 0.5rem !important;
+    margin: 1.15rem 0 !important;
+    padding: 0.9rem 0 !important;
+  }
+
+  .roi-kpi-num {
+    font-size: 0.92rem !important;
+  }
+
+  /* 9. Features-4 (.f4-section) & Customers Table (.ctf-section) */
+  .f4-tabs-list {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto !important;
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+    padding: 0.3rem !important;
+    margin-bottom: 1.25rem !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .f4-tabs-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .f4-tab-trigger {
+    flex-shrink: 0 !important;
+    padding: 0.42rem 0.85rem !important;
+    font-size: 0.76rem !important;
+  }
+
+  .f4-panel-grid {
+    padding: 1.15rem 1rem !important;
+    gap: 1.15rem !important;
+  }
+
+  .ctf-tray {
+    padding: 0.6rem !important;
+    border-radius: 18px !important;
+  }
+
+  .ctf-card-header {
+    padding: 1rem !important;
+  }
+
+  .ctf-preview-outer {
+    aspect-ratio: auto !important;
+    min-height: 190px !important;
+    padding: 0.7rem !important;
+  }
+
+  .ctf-preview-inner {
+    padding: 0.75rem !important;
+  }
+
+  /* 10. Product Detail Pages, Legal Pages, Subpage Heroes, Contact & ID Card Lanyard */
+  .mp-page-hero {
+    padding: 2rem 0 1.5rem !important;
+  }
+
+  .mp-subnav {
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    justify-content: flex-start !important;
+    padding-bottom: 0.25rem !important;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .mp-subnav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mp-subpill,
+  .mp-subnav-pill {
+    flex-shrink: 0 !important;
+  }
+
+  .product-hero-actions,
+  .cta-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .product-hero-actions .btn,
+  .cta-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  .feature-card,
+  .use-case-card,
+  .briefing-card,
+  .cta-banner,
+  .legal-hero-card,
+  .legal-clause {
+    padding: 1.25rem 1rem !important;
+    border-radius: 18px !important;
+  }
+
+  .features-section,
+  .use-cases-section {
+    margin-bottom: 2.5rem !important;
+  }
+
+  .orig-hero-stats,
+  .orig-about-numbers,
+  .orig-contact-methods {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.75rem !important;
+    padding: 1rem !important;
+  }
+
+  .cs-contact-section {
+    padding: 2rem 0 3rem !important;
+  }
+
+  .cs-form-card {
+    padding: 1.25rem 1rem !important;
+  }
+
+  .cs-checkbox-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 0.45rem 0.5rem !important;
+  }
+
+  .cs-checkbox-text {
+    white-space: normal !important;
+    font-size: 0.78rem !important;
+    line-height: 1.25 !important;
+  }
+
+  .lanyard-section-shell {
+    padding: 1.1rem 0.9rem !important;
+    border-radius: 20px !important;
+    gap: 1.25rem !important;
+  }
+
+  .lanyard-stage-col {
+    min-height: 360px !important;
+  }
+
+  .lanyard-canvas-host {
+    height: 340px !important;
+  }
+
+  .mp-pager-section {
+    padding: 2rem 0 2.5rem !important;
+  }
+
+  .mp-pager-grid {
+    grid-template-columns: 1fr !important;
+    gap: 0.75rem !important;
+  }
+
+  .mp-pager-card,
+  .mp-pager-card.is-next {
+    padding: 1rem 1.15rem !important;
+    text-align: left !important;
+    align-items: flex-start !important;
+  }
+
+  /* 11. Meadow Rise Footer & 4-Column Footer (.mrf-live-footer & .fc4-root) */
+  .mrf-live-hero {
+    min-height: 240px !important;
+    padding: 2.25rem 1rem 1.5rem !important;
+  }
+
+  .mrf-live-heading {
+    font-size: clamp(1.65rem, 7.5vw, 2.3rem) !important;
+    margin-bottom: 1.15rem !important;
+  }
+
+  .mrf-live-btn {
+    padding: 0.7rem 1.25rem !important;
+    font-size: 0.85rem !important;
+  }
+
+  .fc4-container {
+    padding: 2rem 1rem 1.5rem !important;
+  }
+
+  .fc4-grid {
+    gap: 1.75rem !important;
+  }
+
+  .fc4-brand {
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+
+  .fc4-socials {
+    justify-content: flex-start !important;
+  }
+
+  .fc4-cols {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 1.35rem 1rem !important;
+    text-align: left !important;
+  }
+
+  .fc4-list-link {
+    justify-content: flex-start !important;
+  }
+
+  /* 12. Wayfinding Dock, Modals & Back-to-Top Button */
+  .wayfinding-dock {
+    bottom: 0.75rem !important;
+    max-width: calc(100vw - 1.25rem) !important;
+    padding: 0.3rem 0.45rem !important;
+  }
+
+  .back-to-top {
+    bottom: 4rem !important;
+    right: 0.85rem !important;
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .modal {
+    padding: 1.35rem 1.1rem !important;
+    border-radius: 20px !important;
+  }
+}
+
+@media (max-width: 400px) {
+  .orig-contact-methods,
+  .cs-checkbox-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .slide-kpis,
+  .roi-kpi-grid,
+  .pc-metrics {
+    grid-template-columns: 1fr !important;
+  }
+}
